@@ -76,6 +76,35 @@
         .right::after {
             left: -16px;
         }
+         @media screen and (max-width: 600px) {
+        .timeline {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        .container {
+            width: calc(100% - 60px); /* Adjust container width for mobile */
+            padding: 10px 20px;
+        }
+        
+        .left, .right {
+            left: 0; /* Reset left positioning */
+        }
+        
+        .container::after {
+            left: -36px; /* Adjust dot position for mobile */
+            right: auto;
+        }
+        
+        .timeline::after {
+            left: 20px; /* Move timeline line to the left */
+            margin-left: 0;
+        }
+        
+        .content {
+            margin-left: 15px; /* Add some space from the timeline */
+        }
+    }
     </style>
 </head>
 <body>
