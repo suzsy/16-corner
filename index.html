@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Timeline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #333;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .left {
+            left: -13.5%;
+        }
+        .right {
+            left: 50%;
+        }
+        .content {
+            padding: 20px;
+            background-color: rgb(245, 240, 242);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .content img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .date {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #333;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .right::after {
+            left: -16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timeline">
+    <div class="container left">
+        <div class="content">
+            <img src="Image/Event 1.jpg" alt="Event Image">
+            <div class="date">1896</div>
+            <div class="title">Beginning of the Colored Town</div>
+            <p>Overtown came into being when a significant black population left Henry Flagler's Royal Poincinana Hotel at Palm Beach to Biscayne Bay in Miami to extend the Florida East Coast Railroad.
+               Theses black men worked hard to build hotels and railroad in Miami and they also built their homes in Colered Town on the other side of railroad throughout the time.
+            </p>
+        </div>
+    </div>
+    <div class="container left">
+        <div class="content">
+            <img src="Image/1904.jpg" alt="Event Image">
+            <div class="date">1904</div>
+            <div class="title">More than 40 businesses opened in Overtown. </div>
+            <p>This poster appeared on City of Miami Directory in 1904. Colored Town was filled with diverse businesses including businesses that sold fine wine and cigars.</p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/1908 william-b-sawyer.jpg" alt="Event Image">
+            <div class="date">1908</div>
+            <div class="title">First African American opened his medical practice in Miami.</div>
+            <p>Dr. William B Sawyer (on the right in the photo) was the youngest doctor in the community to begin medical practices. He was also one of the founders of Christian Hospital later on. He was also the owner of the renowned Mary Elizabeth Hotel in Overtown.</p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/lyric theatre.jpg" alt="Event Image">
+            <div class="date">1913</div>
+            <div class="title">Opening of Lyric Theatre.</div>
+            <p>Lyric Theatre, originally built by Geder Walker, was a 400-seat theater and became a major entertainment center in Black communities in Miami. The Miami News described it as "the most beautiful and costly playhouse owned by Colored people in the Southland."</p>
+        </div>
+    </div>
+    <div class="container left">
+        <div class="content">
+            <img src="Image/1915.jpg" alt="Event Image">
+            <div class="date">1915</div>
+            <div class="title">More than 150 businesses opened in Overtown. </div>
+            <p>In the 1910s, Overtown was a bustiling community with thriving local businesses such as baber shops, beauty stores, family groceries, churches, schools, a milinier, and a drug store. Even families from Lemon City (now known as Little Haiti), Coconut Grove, and other black neighborhoods came to shop and dine. </p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/christian-hospital-opening.jpg" alt="Event Image">
+            <div class="date">1918</div>
+            <div class="title">First Black hospital opened in Overtown</div>
+            <p>Christian Hospital, a wood frame hospital with 12 beds, was the first hospital in black communities. It was the only hospital for black people in Miami when at a time most hospitals would refuse to treat black patients.</p>
+        </div><!-- Add more events as needed -->
+    </div>
+    <div class="container left">
+        <div class="content">
+            <img src="Image/Heyday overtown.JPG" alt="Event Image">
+            <div class="date">1920 - 1960</div>
+            <div class="title">Heyday of Overtown </div>
+            <p>Overtown was once the center of entertainment and some calle it "Miami's Little Broadway". There were numerous bars, clubs, luxury hotels with famous black entertainers frequently performing there. 
+                At that time, social practices and racial segregation law restrict the black to stay only in black neighborhoods. Black entertainers, notably Nat King Cole, Billie Holidays, Louis Armstrong, B.B.King, Aretha franklin, etc, who were invited to perform in Miami Beach, will come to cubs in Overtown to perform after their performances and stay in hotels in Overtown. </p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/1946 Duke Ellington.HEIC" alt="Event Image">
+            <div class="date">1946</div>
+            <div class="title">Duke Elington performing in Overtown.</div>
+            <p> In the 1940s and 1950s, Overtown was a hub for Jazz musicians, and it was also named "Harlem of the South". Legendary Jazz musicians like Count Baise, Ella Fitzgerald and Duke Ellinton all performed here.</p>
+        </div><!-- Add more events as needed -->
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/1950s NW 2nd btw 8th and 9th.jpeg" alt="Event Image">
+            <div class="date">1950</div>
+            <div class="title">Street scene in overtown in 1950s</div>
+            <p>NW 2nd between 8th and 9th street in 1950s. </p>
+        </div><!-- Add more events as needed -->
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/nat king cole in miami 1956.JPG" alt="Event Image">
+            <div class="date">1956</div>
+            <div class="title">Singer Nat King Cole in Miami.</div>
+        </div><!-- Add more events as needed -->
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/1957 Singer:actress Josephine Baker and boxer Joe Louis .jpeg" alt="Event Image">
+            <div class="date">1957</div>
+            <div class="title">Singer actress Josephine Baker and boxer Joe Louis</div>
+        </div><!-- Add more events as needed -->
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/johnny's.jpg" alt="Event Image">
+            <div class="date">1957</div>
+            <div class="title">Johnny's Records</div>
+            <p> In 1957, Willie Clarke, who was raised in Overtown, founded Johnny's records with his college frined Johnny Pearsall in Liberty City. Inspired by Motown and the influence of soul music, they started the first black owned record label in Florida - Deep City Records. They collaborated with musicians and talents who were performing in clubs in Overtown and pioneered the creation of Miami Sound.</p>
+        </div><!-- Add more events as needed -->
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/arturo gifilippi, founder of florida grand opera with muhammed ali.JPG" alt="Event Image">
+            <div class="date">1960s</div>
+            <div class="title">Muhammed Ali with Arturo gifilippi</div>
+            <p>Colored Town not only attracted musicians and artists but also sports stars. Muhammed Ali moved to Overtown in 1960s to pursue his boxing career. He then won heavyweight championship of the world in 1964.  </p>
+        </div><!-- Add more events as needed -->
+    </div>
+    <div class="container left">
+        <div class="content">
+            <img src="Image/Overview to I-95 looking south in Miami, August 23, 1967.JPG" alt="Event Image">
+            <div class="date">1960s</div>
+            <div class="title"> Construction of expressways destroyed urban fabric in Overtown</div>
+            <p>The construction of expressway I-95, I-395, and later state highway 836 cut through the heart of Overtown and took away thousands of homes along with its business district causing displacement of nearly half of its population.</p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <img src="Image/Overview of I-395 looking east in Miami, August 23, 1967..JPG"alt="Event Image">
+            <div class="date">1967</div>
+            <div class="title"> I-395 Looking east in Miami</div>
+            <p>Many displaced residents left for Liberty City, Little Haiti, Bronwsville, or Opa-locka without any assistance. The vibrant community in Overtown was dismatled by the infrastructure, and it was never the same.
+            </p>
+        </div> 
+    </div> 
+</div>
+</body>
+</html>
