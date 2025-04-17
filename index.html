@@ -77,34 +77,47 @@
             left: -16px;
         }
          @media screen and (max-width: 600px) {
-        .timeline {
-            max-width: 100%;
-            padding: 20px;
-        }
-        
-        .container {
-            width: calc(100% - 60px); /* Adjust container width for mobile */
-            padding: 10px 20px;
-        }
-        
-        .left, .right {
-            left: 0; /* Reset left positioning */
-        }
-        
-        .container::after {
-            left: -36px; /* Adjust dot position for mobile */
-            right: auto;
-        }
-        
-        .timeline::after {
-            left: 20px; /* Move timeline line to the left */
-            margin-left: 0;
-        }
-        
-        .content {
-            margin-left: 15px; /* Add some space from the timeline */
-        }
+    .timeline {
+        max-width: 100%;
+        padding: 20px;
     }
+    
+    .container {
+        width: 45%; /* Make containers slightly smaller on mobile */
+    }
+    
+    .left {
+        left: -8%; /* Adjust left position for mobile */
+    }
+    
+    .right {
+        left: 45%; /* Adjust right position for mobile */
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    /* Adjust dot positions */
+    .container::after {
+        width: 20px; /* Make dots slightly smaller on mobile */
+        height: 20px;
+    }
+    
+    .left::after {
+        right: -12px; /* Adjust left dot position */
+    }
+    
+    .right::after {
+        left: -12px; /* Adjust right dot position */
+    }
+    
+    /* Make sure images fit */
+    .content img {
+        max-width: 100%;
+        height: auto;
+    }
+}
     </style>
 </head>
 <body>
