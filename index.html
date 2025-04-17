@@ -26,6 +26,7 @@
             bottom: 0;
             left: 50%;
             margin-left: -3px;
+            transform: translateX(-50%);
         }
         .container {
             padding: 10px 40px;
@@ -53,8 +54,8 @@
             margin-bottom: 10px;
         }
         .date {
-            font-size: 0.9em;
-            color: #666;
+            font-size: 1em;
+            color: #424141;
             margin-bottom: 5px;
         }
         .title {
@@ -72,52 +73,53 @@
             top: 15px;
             border-radius: 50%;
             z-index: 1;
+            transform: translateX(-10%);
         }
         .right::after {
             left: -16px;
         }
          @media screen and (max-width: 600px) {
-    .timeline {
-        max-width: 100%;
-        padding: 20px;
+        .timeline {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 45%; /* Make containers slightly smaller on mobile */
+        }
+        
+        .left {
+            left: -8%; /* Adjust left position for mobile */
+        }
+        
+        .right {
+            left: 45%; /* Adjust right position for mobile */
+        }
+        
+        .content {
+            padding: 15px;
+        }
+        
+        /* Adjust dot positions */
+        .container::after {
+            width: 20px; /* Make dots slightly smaller on mobile */
+            height: 20px;
+        }
+        
+        .left::after {
+            right: -12px; /* Adjust left dot position */
+        }
+        
+        .right::after {
+            left: -12px; /* Adjust right dot position */
+        }
+        
+        /* Make sure images fit */
+        .content img {
+            max-width: 100%;
+            height: auto;
+        }
     }
-    
-    .container {
-        width: 45%; /* Make containers slightly smaller on mobile */
-    }
-    
-    .left {
-        left: -8%; /* Adjust left position for mobile */
-    }
-    
-    .right {
-        left: 45%; /* Adjust right position for mobile */
-    }
-    
-    .content {
-        padding: 15px;
-    }
-    
-    /* Adjust dot positions */
-    .container::after {
-        width: 20px; /* Make dots slightly smaller on mobile */
-        height: 20px;
-    }
-    
-    .left::after {
-        right: -12px; /* Adjust left dot position */
-    }
-    
-    .right::after {
-        left: -12px; /* Adjust right dot position */
-    }
-    
-    /* Make sure images fit */
-    .content img {
-        max-width: 100%;
-        height: auto;
-    }
-}
     </style>
 </head>
 <body>
