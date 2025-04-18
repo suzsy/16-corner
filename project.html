@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Summary</title>
+    <style>
+        .header {
+        text-align: center;
+        padding: 40px 0 20px 0;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(245, 240, 242, 0.8); /* 0.8 is the opacity - adjust as needed */
+        border-radius: 10px;
+        padding: 20px; 
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #383636;
+            margin-bottom: 15px;
+        }
+
+
+        body {
+            font-family: Avenir, sans-serif;
+            background-color: rgb(245, 245, 245);
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+         /*Navbar*/
+         .navbar {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        }
+
+        .nav-button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+        background-color: #555;
+        }
+
+        /* Adjust your header to account for the navbar */
+        .header {
+        margin-top: 80px; /* Add this to push content below navbar */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-button">Homepage</a>
+            <a href="history.html" class="nav-button">History</a>
+            <a href="project.html" class="nav-button">Project Summary</a>
+            <a href="Impact.html" class="nav-button">Impact</a>
+            <a href="resources.html" class="nav-button">Resources</a>
+        </div>
+    </nav>
+
+    <!-- Page content -->
+    <div class="header">
+        <h1>Project Summary</h1>
+        <!-- Your content here -->
+    </div>
+</body>
+</html>

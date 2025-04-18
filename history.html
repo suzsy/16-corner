@@ -27,7 +27,7 @@
             line-height: 1.6;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: Avenir, sans-serif;
             background-color: rgb(245, 245, 245);
             margin: 0;
             padding: 0;
@@ -166,10 +166,55 @@
             max-width: 100%;
             height: auto;
         }
-    }
+        }
+        /*Navbar*/
+        .navbar {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        }
+
+        .nav-button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+        background-color: #555;
+        }
+
+        /* Adjust your header to account for the navbar */
+        .header {
+        margin-top: 80px; /* Add this to push content below navbar */
+        }
     </style>
 </head>
 <body>
+<nav class="navbar">
+    <div class="nav-links">
+        <a href="index.html" class="nav-button">Homepage</a>
+        <a href="history.html" class="nav-button">History</a>
+        <a href="project.html" class="nav-button">Project Summary</a>
+        <a href="awards.html" class="nav-button">Impact</a>
+        <a href="resources.html" class="nav-button">Resources</a>
+    </div>
+</nav>
 <div class="header">
     <h1>History of Overtown</h1>
     <p>A chronological journey of Miami's historic Black community</p>
