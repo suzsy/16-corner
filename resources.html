@@ -4,131 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resources</title>
-    <style>
-        .header {
-        text-align: center;
-        padding: 40px 0 20px 0;
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: rgba(245, 240, 242, 0.8); /* 0.8 is the opacity - adjust as needed */
-        border-radius: 10px;
-        padding: 20px; 
-        }
+</head>
+<style>
+    .header {
+    text-align: center;
+    padding: 40px 0 20px 0;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(245, 240, 242, 0.8); /* 0.8 is the opacity - adjust as needed */
+    border-radius: 10px;
+    padding: 20px; 
+    }
 
-        .header h1 {
-            font-size: 2.5em;
-            color: #383636;
-            margin-bottom: 15px;
-        }
+    .header h1 {
+        font-size: 2.5em;
+        color: #383636;
+        margin-bottom: 15px;
+    }
 
 
-        body {
-            font-family: Avenir, sans-serif;
-            background-color: rgb(245, 245, 245);
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-         /*Navbar*/
-         .navbar {
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 15px 0;
+    body {
+        font-family: Avenir, sans-serif;
+        background-color: rgb(245, 245, 245);
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    body::before {
+        content: '';
         position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+        height: 100%;
+        z-index: -1;
+    }
+     /*Navbar*/
+     .navbar {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
+    .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    }
+
+    .nav-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    }
+
+    .nav-button:hover {
+    background-color: #555;
+    }
+
+    /* Adjust your header to account for the navbar */
+    .header {
+    margin-top: 80px; /* Add this to push content below navbar */
+    }
+    .resources-content {
         max-width: 800px;
-        margin: 0 auto;
-        }
+        margin: 40px auto;
+        padding: 20px;
+        text-align: left;
+    }
 
-        .nav-button {
-        padding: 10px 20px;
-        background-color: #333;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        }
+    .resources-section {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .nav-button:hover {
-        background-color: #555;
-        }
+    .resources-section h2 {
+        color: #383636;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
 
-        /* Adjust your header to account for the navbar */
-        .header {
-        margin-top: 80px; /* Add this to push content below navbar */
-        }
-        .resources-content {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            text-align: left;
-        }
+    .resources-section p {
+        line-height: 1.6;
+        color: #444;
+        margin: 15px 0;
+    }
 
-        .resources-section {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    .resources-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+    }
+    .resources-link {
+        color: #0066cc;             /* Link color */
+        text-decoration: none;      /* Removes underline */
+        font-weight: 500;          /* Makes text slightly bold */
+        transition: color 0.3s;    /* Smooth color transition on hover */
+    }
 
-        .resources-section h2 {
-            color: #383636;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
+    .resources-link:hover {
+        color: #003366;            /* Darker color when hovering */
+        text-decoration: underline; /* Adds underline on hover */
+    }
 
-        .resources-section p {
-            line-height: 1.6;
-            color: #444;
-            margin: 15px 0;
-        }
-
-        .resources-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-        .resources-link {
-            color: #0066cc;             /* Link color */
-            text-decoration: none;      /* Removes underline */
-            font-weight: 500;          /* Makes text slightly bold */
-            transition: color 0.3s;    /* Smooth color transition on hover */
-        }
-
-        .resources-link:hover {
-            color: #003366;            /* Darker color when hovering */
-            text-decoration: underline; /* Adds underline on hover */
-        }
-
-    </style>
-</head>
+</style>
 <body>
     <!-- Navigation bar -->
     <nav class="navbar">
         <div class="nav-links">
             <a href="index.html" class="nav-button">Home</a>
             <a href="history.html" class="nav-button">History</a>
-            <a href="project.html" class="nav-button">Project Summary</a>
-            <a href="Impact.html" class="nav-button">Impact</a>
+            <a href="project.html" class="nav-button">Project</a>
+            <a href="challenge.html" class="nav-button">Challenges</a>
+            <a href="impact.html" class="nav-button">Impact</a>
             <a href="resources.html" class="nav-button">Resources</a>
         </div>
     </nav>
@@ -136,7 +137,19 @@
     <!-- Page content -->
     <div class="header">
         <h1>Resources</h1>
+
         <div class="resources-content">
+
+            <div class="resources-section">
+                <h2>Overtown Resources</h2>
+                <h3>1. <a href="https://www.bahlt.org" target="_blank" class="resources-link">The Black Archives Histric Lyric Theare</a></h3>
+                <h3>2. <a href="https://goingovertown.org" target="_blank" class="resources-link">Going Overtown</a></h3>
+                <h3>3. <a href="https://www.theblackarchives.org/about-2/overtown-reclaiming-a-sense-of-place/" target="_blank" class="resources-link">Overtown:Reclaiming a Sense of Place by The Black Archives</a></h3>
+                <h3>3. <a href="https://hyperallergic.com/383870/stories-from-a-once-culturally-vibrant-now-neglected-miami-neighborhood/" target="_blank" class="resources-link">Stories of Overtown by Hyperallergic</a></h3>
+                <h3>4. <a href="https://www.miamiherald.com/living/article1921766.html" target="_blank" class="resources-link">Overtown's Heyday by Miami Herald</a></h3>
+                <h3>5. <a href="https://www.housingissues.org/overtown/hist-his.html" target="_blank" class="resources-link">History of Overtown by Housing Issues</a></h3>
+            </div>
+
             <div class="resources-section">
                 <h2>Affordable Housing Resource Board</h2>
                 <h3>1. <a href="https://www.floridahousing.org/docs/default-source/developers-and-property-managers/compliance/limits/rent-limits/2025_rent_limits/florida-housing-rental-programs---2025-income-and-rent-limits--eff--4-1-2025-.pdf?sfvrsn=602ecf7b_4" target="_blank" class="resources-link">Florida Income and Rent Limit Schedule 2025 by Florida Housing Finance Corporation</a></h3>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Summary</title>
+    <style>
+        .header {
+        text-align: center;
+        padding: 40px 0 20px 0;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(245, 240, 242, 0.8); /* 0.8 is the opacity - adjust as needed */
+        border-radius: 10px;
+        padding: 20px; 
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #383636;
+            margin-bottom: 15px;
+        }
+
+
+        body {
+            font-family: Avenir, sans-serif;
+            background-color: rgb(245, 245, 245);
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+         /*Navbar*/
+         .navbar {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        }
+
+        .nav-button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+        background-color: #555;
+        }
+
+        /* Adjust your header to account for the navbar */
+        .header {
+        margin-top: 80px; /* Add this to push content below navbar */
+        }
+        .project-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .project-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-section h2 {
+            color: #383636;
+            font-size: 1.8em;
+            margin-bottom: 0;
+        }
+
+        .project-section p {
+            line-height: 1.6;
+            color: #444;
+            margin: 15px 0;
+            text-align: left;
+            text-indent: 2em;
+        }
+
+        .project-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 0;
+            margin: 0;          
+        }
+
+        .project-link {
+            color: #0066cc;             /* Link color */
+            text-decoration: none;      /* Removes underline */
+            font-weight: 500;          /* Makes text slightly bold */
+            transition: color 0.3s;    /* Smooth color transition on hover */
+        }
+
+        .project-link:hover {
+            color: #003366;            /* Darker color when hovering */
+            text-decoration: underline; /* Adds underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="history.html" class="nav-button">History</a>
+            <a href="project.html" class="nav-button">Project</a>
+            <a href="challenge.html" class="nav-button">Challenges</a>
+            <a href="impact.html" class="nav-button">Impact</a>
+            <a href="resources.html" class="nav-button">Resources</a>
+        </div>
+    </nav>
+
+    <!-- Page content -->
+    <div class="header">
+        <h1>Challenges</h1>
+
+    <div class="project-section">
+        <h2>1.Funding challenge </h2>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;It’s commonly known that it is difficult to fund affordable housing development project. 16 Corner has a combination of public funding and private financing methods. Initially, 16 corner received a forgivable loan from Omni CRA of $3.8 million, borrowed $1.76 million loan from a local bank and raised $400k in equity. Additionally, we’ve received $812k from Surtax loan program in 2022 and $585k from DIAF (Development Inflation Adjustment Fund) in 2023</p>
+        <img src="Project summary/Project Finanical Summary.png" class="project-image">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Total projected cost of this project is about $9.2 million averaging $177k per unit. Other than equity, loan program and grants, The Vagabond Group donated developer fee and absorbed architectural project management fee totaling $1 million. See the funding structure graph below for details.</p>
+        <img src="Project summary/Funding Structure.png" class="project-image">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;It is relatively easier for developers with decades of track records like The Vagabond Group to obtain public funding but for young developers, often it is not an option. How do you make a project financially feasible is a question that many developers struggle with.</p>
+
+        <h2>2.The challenges for dealing with unpredictability in global events. </h2>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Taking building 1535 as an example. It was the building that was impacted the most in the process. The supply shortage during COVID led to increase in construction material cost. The initial construction estimate was $644k, in the end, the project cost around $1million. </p>
+        <img src="Project summary/1535 expense.png" class="project-image">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;The top 5 construction expenses in this project were Drywall, Electrical, Plumbing, Structure and Windows. Notably, plumbing cost nearly doubled, and window cost increased more than half of its original contract value.</p>
+
+        <h2>3.Financial burden on carry costs and shortfalls.</h2>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Being a real estate developer means having extra capital set aside to be able to carry cost moving the project forward. Even 16 corner was seemingly well-funded, it was not enough to cover the shortfalls caused by unforeseeable events. </p>
+
+        <h2>4.The challenge of working with municipalities</h2>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;. 16 Corner receive parts of funding from Miami Dade County Surtax loan program. Each time, the draw application generally takes a few months to review and process, the lengthy and time-consuming process often adds extra financial stress and workload on boutique developers. </p>
+
+        <h2>5.The cost of doing things right. </h2>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;1535 was paused for about 2 years during COVID due to strict construction practice and the difficulty faced in moving tenants around for renovation. </p>
+
+        <h2>6.Security and safety challenges</h2>
+        <p>During construction, multiple theft incidents happened due to the challenging nature of this neighborhood. For instance, water meters and pole needed in plumbing were stolen twice, and electrical wires were also stolen. Thankfully, Omni CRA provided security service and coordinated with local police office to offer extra security for the project. Imagine if it were come from developers, it would have added extra expenses to this project.</p>  
+    </div>

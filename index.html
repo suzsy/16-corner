@@ -77,6 +77,61 @@
         .header {
         margin-top: 80px; /* Add this to push content below navbar */
         }
+
+         /*contact box*/
+         .contact-form {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+        color: #383636;
+        margin-bottom: 20px;
+        text-align: center;
+        }
+
+        .form-group {
+        margin-bottom: 20px;
+        }
+
+        .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #444;
+        }
+
+        .form-group input,
+        .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: Avenir, sans-serif;
+        }
+
+        .form-group textarea {
+        height: 150px;
+        resize: vertical;
+        }
+
+        .submit-button {
+        background-color: #333;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+        background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +141,7 @@
             <a href="index.html" class="nav-button">Home</a>
             <a href="history.html" class="nav-button">History</a>
             <a href="project.html" class="nav-button">Project Summary</a>
+            <a href="challenge.html" class="nav-button">Challenges</a>
             <a href="Impact.html" class="nav-button">Impact</a>
             <a href="resources.html" class="nav-button">Resources</a>
         </div>
@@ -94,7 +150,30 @@
     <!-- Page content -->
     <div class="header">
         <h1>16 Corner</h1>
-        <!-- Your content here -->
+        
+    <!--contact box-->
+    <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form action="#" method="POST" data-netlify="true">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+    </div>
+    
     </div>
 </body>
 </html>
