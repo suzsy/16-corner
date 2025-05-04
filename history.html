@@ -172,6 +172,76 @@
         background-color: #555;
         }
 
+        /*adjust to different screen*/
+        @media screen and (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .left, .right {
+                grid-column: 1;
+            }
+
+            .middle {
+                display: none;
+            }
+
+            .container::after {
+                left: 0;
+                transform: none;
+            }
+
+            .content {
+                margin: 10px 0;
+            }
+
+            .dot {
+                display: none;
+            }
+
+            /* Navigation bar adjustments */
+            .navbar {
+                padding: 5px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 15px;
+            }
+
+            .content img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Navigation bar adjustments for very small screens */
+            .nav-links {
+                gap: 5px;
+            }
+
+            .nav-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
 
     </style>
 </head>
@@ -206,16 +276,12 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
         </div>
 
         <div class = "row">
             <div class="column middle">
                 <div class="dot"></div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column left">
@@ -231,8 +297,6 @@
         <div class = "row">
             <div class="column middle">
                 <div class="dot"></div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column right">
@@ -248,8 +312,6 @@
         <div class = "row">
             <div class="column middle">
                 <div class="dot">
-                </div>
-                <div class = "container::after">
                 </div>
             </div>
 
@@ -267,8 +329,6 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column left">
@@ -285,8 +345,6 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
             
             <div class="column right">
@@ -302,8 +360,6 @@
         <div class = "row">
             <div class="column middle">
                 <div class="dot">
-                </div>
-                <div class = "container::after">
                 </div>
             </div>
 
@@ -322,8 +378,6 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column right">
@@ -339,8 +393,6 @@
         <div class = "row">
             <div class="column middle">
                 <div class="dot">
-                </div>
-                <div class = "container::after">
                 </div>
             </div>
 
@@ -358,8 +410,6 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column right">
@@ -375,8 +425,6 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column right">
@@ -391,8 +439,6 @@
         <div class = "row">
             <div class="column middle">
                 <div class="dot">
-                </div>
-                <div class = "container::after">
                 </div>
             </div>
 
@@ -410,8 +456,6 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column right">
@@ -428,8 +472,6 @@
             <div class="column middle">
                 <div class="dot">
                 </div>
-                <div class = "container::after">
-                </div>
             </div>
 
             <div class="column left">
@@ -445,8 +487,6 @@
         <div class = "row">
             <div class="column middle">
                 <div class="dot">
-                </div>
-                <div class = "container::after">
                 </div>
             </div>
 
