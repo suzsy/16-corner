@@ -8,27 +8,30 @@
         * {
         box-sizing: border-box;
         }
-        
+
+                
         html, body {
-        margin: 20%;
+        margin: 10%;
         }
-        
+
         .header {
         text-align: center;
-        padding: 40px 0 20px 0;
-        margin: 0 auto;
- 
+        padding: 30px 0 20px 0;
+        max-width: 800px;
+        margin: 0 auto 60px auto;
+        padding: 20px;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            color: #fefcfc;
-            margin-bottom: 15px;
+            font-size: 3em;
+            color: #f7eff1;
+            bottom: 30px;
         }
 
         .header p {
             font-size: 1.2em;
-            color: #e0d5d5;
+            font-weight: 400;
+            color: #000000;
             line-height: 1.6;
         }
         
@@ -58,7 +61,6 @@
         .container {
             display:grid;
             grid-template-columns: 1fr 1rem 1fr;
-            position: middle;
             gap: 1rem;
         }
 
@@ -101,9 +103,9 @@
         .dot {
         width: 1rem;
         height: 1rem;
-        border: 3px solid rgb(118, 117, 117);
+        border: 2px solid rgb(118, 117, 117);
         border-radius: 50%;
-        background-color: rgb(98, 93, 93);
+        background-color: rgb(78, 67, 67);
         }
 
         .content {
@@ -112,7 +114,22 @@
             position: relative;
             border-radius: 6px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            transition: opacity 3s ease-in-out, transform 3s ease-in-out;
+            transform: translateY(0);
         }
+
+        .content:hover {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            transition: none;
+        }
+
+        .content.fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
         .content img {
             width: 100%;
             height: auto;
@@ -125,6 +142,7 @@
             color: #424141;
             margin-bottom: 5px;
         }
+
         .title {
             font-weight: bold;
             margin-bottom: 10px;
@@ -135,13 +153,48 @@
             bottom: 10px;
             left: 10px;
             z-index: 1000;
-            
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .audio-player.hidden {
+            transform: translateX(-100%);
+        }
+
+        .player-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .player-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .player-toggle::after {
+            content: 'Hide';
+            font-size: 15px;
+        }
+
+        .player-toggle.hidden::after {
+            content: '▶';
         }
 
         /*Navbar*/
         .navbar {
-        background-color: rgba(255, 255, 255, 0.7);
-        padding: 10px 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 15px 0;
         position: fixed;
         top: 0;
         left: 0;
@@ -160,16 +213,37 @@
 
         .nav-button {
         padding: 10px 20px;
-        color: rgb(55, 51, 51);
-        font-family: 'Helvetica Medium';
-        font-weight: bold;
+        color: rgb(245, 240, 242);
+        font-family: 'Futura';
+        font-weight: medium;
         text-decoration: none;
         border-radius: 10px;
-        transition: background-color 0.3s;
+        position: relative;
+        transition: all 0.3s;
         }
 
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px; /* Smaller circle */
+            height: 10px; /* Smaller circle */
+            background-color: rgba(255, 255, 255, 0.5); 
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-button:hover::before {
+            opacity: 1;
+            width: 15px; /* Slightly larger on hover */
+            height: 15px; /* Slightly larger on hover */
+        }
         .nav-button:hover {
-        background-color: #555;
+        color: rgb(239, 183, 183);
         }
 
         /*adjust to different screen*/
@@ -262,7 +336,7 @@
 
     <div class="container">
         <div class = "row">
-            <div class="columnn left">
+            <div class="column left">
                 <div class="content">
                     <img src="Image/Event 1.jpg" alt="Event Image">
                     <div class="date">1896</div>
@@ -272,7 +346,6 @@
                     </p>
                 </div>
             </div>
-
             <div class="column middle">
                 <div class="dot">
                 </div>
@@ -283,7 +356,6 @@
             <div class="column middle">
                 <div class="dot"></div>
             </div>
-
             <div class="column left">
                 <div class="content">
                     <img src="Image/1904.jpg" alt="Event Image">
@@ -304,7 +376,7 @@
                     <img src="Image/1908 william-b-sawyer.jpg" alt="Event Image">
                     <div class="date">1908</div>
                     <div class="title">First African American opened his medical practice in Miami.</div>
-                    <p>Dr. William B Sawyer (on the right in the photo) was the youngest doctor in the community to begin medical practices. He was also one of the founders of Christian Hospital later on. He was also the owner of the renowned Mary Elizabeth Hotel in Overtown.</p>
+                    <p>Dr. William B Sawyer (on the right) was the youngest doctor in the community to begin medical practices. He was also one of the founders of Christian Hospital later on. He was also the owner of the renowned Mary Elizabeth Hotel in Overtown.</p>
                 </div>
             </div>
         </div>
@@ -512,6 +584,75 @@
                 loading="lazy">
             </iframe>
         </div>
+        <button class="player-toggle" onclick="togglePlayer()"></button>
     </div>
+
+<script>
+    let lastHoveredContent = null;
+    let fadeTimeout = null;
+    let lastScrollPosition = window.scrollY;
+
+    window.addEventListener('scroll', function() {
+        const contents = document.querySelectorAll('.content');
+        const windowHeight = window.innerHeight;
+        const currentScrollPosition = window.scrollY;
+        const isScrollingDown = currentScrollPosition > lastScrollPosition;
+        lastScrollPosition = currentScrollPosition;
+        
+        contents.forEach((content, index) => {
+            const contentPosition = content.getBoundingClientRect().top;
+            const contentHeight = content.getBoundingClientRect().height;
+            
+            // If this content is being hovered, don't fade it
+            if (content === lastHoveredContent) {
+                return;
+            }
+            
+            // Start fading when the content is 70% scrolled through
+            if (contentPosition < windowHeight * 0.7) {
+                // Calculate fade progress based on scroll position
+                const fadeStart = windowHeight * 0.7;
+                const fadeEnd = -contentHeight;
+                const fadeProgress = (contentPosition - fadeStart) / (fadeEnd - fadeStart);
+                
+                // Apply fade based on scroll position and direction
+                if (isScrollingDown) {
+                    content.style.opacity = Math.max(0, 1 - fadeProgress);
+                    content.style.transform = `translateY(${fadeProgress * 20}px)`;
+                } else {
+                    // When scrolling up, immediately restore content
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0)';
+                }
+            } else {
+                content.style.opacity = '1';
+                content.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    // Add hover event listeners to all content boxes
+    document.querySelectorAll('.content').forEach(content => {
+        content.addEventListener('mouseenter', function() {
+            lastHoveredContent = this;
+            // Reset any fade effects
+            this.style.opacity = '1';
+            this.style.transform = 'translateY(0)';
+        });
+
+        content.addEventListener('mouseleave', function() {
+            lastHoveredContent = null;
+            // Trigger a scroll event to update the fade state
+            window.dispatchEvent(new Event('scroll'));
+        });
+    });
+    //hide music player//
+    function togglePlayer() {
+        const player = document.querySelector('.audio-player');
+        const toggle = document.querySelector('.player-toggle');
+        player.classList.toggle('hidden');
+        toggle.classList.toggle('hidden');
+    }
+</script>
 </body>
 </html>
