@@ -183,6 +183,23 @@
             }
             
         }   
+        /*progress bar*/
+
+        .progress-container {
+            position: fixed;
+            top: 60px; /* Position right under the navbar */
+            width: 100%;
+            left:0;
+            height: 8px;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(to right, white,rgb(239, 183, 183));
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
 
 </style>
 <body>
@@ -197,6 +214,10 @@
             <a href="resources.html" class="nav-button">Resources</a>
         </div>
     </nav>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
 
     <!-- Page content -->
     <div class="header">
@@ -286,6 +307,14 @@
     document.addEventListener('mouseup', () => {
         cursorHalo.classList.remove('active');
     });
+
+    // Reading progress bar
+    window.onscroll = function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+    };
 </script>         
 </body>
 </html>
