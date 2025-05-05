@@ -41,6 +41,7 @@
             margin: 0;
             padding: 0;
             position: relative;
+            cursor: none;
         }
         body::before {
             content: '';
@@ -191,6 +192,43 @@
             content: '▶';
         }
 
+        /*back to top button*/
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .back-to-top::after {
+            content: '↑';
+            font-size: 20px;
+        }
+
         /*Navbar*/
         .navbar {
         background-color: rgba(0, 0, 0, 0.7);
@@ -221,29 +259,33 @@
         position: relative;
         transition: all 0.3s;
         }
-
-        .nav-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 10px; /* Smaller circle */
-            height: 10px; /* Smaller circle */
-            background-color: rgba(255, 255, 255, 0.5); 
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        .nav-button:hover::before {
-            opacity: 1;
-            width: 15px; /* Slightly larger on hover */
-            height: 15px; /* Slightly larger on hover */
-        }
+        
         .nav-button:hover {
         color: rgb(239, 183, 183);
+        }
+
+        .cursor-halo {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s;
+            mix-blend-mode: screen;
+            box-shadow: 0 0 10px rgba(255,255,255,0.6);
+        }
+
+        * {
+            cursor: none;
+        }
+
+        .cursor-halo.active {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
         }
 
         /*adjust to different screen*/
@@ -320,6 +362,7 @@
     </style>
 </head>
 <body>
+<div class="cursor-halo"></div>
 <nav class="navbar">
     <div class="nav-links">
         <a href="index.html" class="nav-button">Home</a>
@@ -585,9 +628,12 @@
             </iframe>
         </div>
         <button class="player-toggle" onclick="togglePlayer()"></button>
+        <button class="back-to-top" onclick="scrollToTop()"></button>
     </div>
+    <div class="cursor-halo"></div>
 
 <script>
+    /*scroll up and down*/
     let lastHoveredContent = null;
     let fadeTimeout = null;
     let lastScrollPosition = window.scrollY;
@@ -653,6 +699,40 @@
         player.classList.toggle('hidden');
         toggle.classList.toggle('hidden');
     }
+    // Back to Top functionality
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', function() {
+        // Show button when user scrolls down 300px
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+     // Cursor halo effect
+     const cursorHalo = document.querySelector('.cursor-halo');
+    
+    document.addEventListener('mousemove', (e) => {
+        cursorHalo.style.left = e.clientX + 'px';
+        cursorHalo.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => {
+        cursorHalo.classList.add('active');
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursorHalo.classList.remove('active');
+    });
 </script>
 </body>
 </html>
