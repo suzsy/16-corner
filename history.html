@@ -27,13 +27,6 @@
             color: #f7eff1;
             bottom: 30px;
         }
-
-        .header p {
-            font-size: 1.2em;
-            font-weight: 400;
-            color: #000000;
-            line-height: 1.6;
-        }
         
         body {
             font-family: Avenir, sans-serif;
@@ -336,6 +329,12 @@
                 padding: 8px 15px;
                 font-size: 0.9em;
             }
+
+            .cursor-halo {
+                width: 30px;
+                height: 30px;
+                box-shadow: 0 0 6px rgba(255,255,255,0.3);
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -357,7 +356,14 @@
                 padding: 6px 12px;
                 font-size: 0.8em;
             }
+
+            .cursor-halo {
+                width: 20px;
+                height: 20px;
+                box-shadow: 0 0 4px rgba(255,255,255,0.3);
+            }
         }
+
 
     </style>
 </head>
@@ -374,7 +380,6 @@
 </nav>
 <div class="header">
     <h1>History of Overtown</h1>
-    <p>A chronological journey of Miami's historic Black community</p>
 </div>
 
     <div class="container">

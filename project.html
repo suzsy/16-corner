@@ -28,7 +28,9 @@
             margin: 0;
             padding: 0;
             position: relative;
+            cursor: none;
         }
+
         body::before {
             content: '';
             position: fixed;
@@ -39,11 +41,12 @@
             z-index: -1;
         }
          /*Navbar*/
-         .navbar {
-        background-color: rgba(255, 255, 255, 0.9);
+        .navbar {
+        background-color: rgba(0, 0, 0, 0.7);
         padding: 15px 0;
         position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
         z-index: 1000;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -59,21 +62,43 @@
 
         .nav-button {
         padding: 10px 20px;
-        background-color: #333;
-        color: white;
+        color: rgb(245, 240, 242);
+        font-family: 'Futura';
+        font-weight: medium;
         text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
+        border-radius: 10px;
+        position: relative;
+        transition: all 0.3s;
         }
-
+        
         .nav-button:hover {
-        background-color: #555;
+        color: rgb(239, 183, 183);
         }
 
-        /* Adjust your header to account for the navbar */
-        .header {
-        margin-top: 80px; /* Add this to push content below navbar */
+        .cursor-halo {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s;
+            mix-blend-mode: screen;
+            box-shadow: 0 0 10px rgba(255,255,255,0.6);
         }
+
+        * {
+            cursor: none;
+        }
+
+        .cursor-halo.active {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+        }
+
         .project-content {
             max-width: 800px;
             margin: 40px auto;
@@ -121,11 +146,51 @@
             color: #003366;            /* Darker color when hovering */
             text-decoration: underline; /* Adds underline on hover */
         }
+    /*adjust to different screen*/
+    @media screen and (max-width: 768px) {
+            /* Navigation bar adjustments */
+            .navbar {
+                padding: 5px 0;
+            }
 
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            .cursor-halo {
+                width: 30px;
+                height: 30px;
+                box-shadow: 0 0 6px rgba(255,255,255,0.3);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            /* Navigation bar adjustments for very small screens */
+            .nav-links {
+                gap: 5px;
+            }
+
+            .nav-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+            .cursor-halo {
+                width: 20px;
+                height: 20px;
+                box-shadow: 0 0 4px rgba(255,255,255,0.3);
+            }
+        }   
        
     </style>
 </head>
 <body>
+    <div class="cursor-halo"></div>
     <!-- Navigation bar -->
     <nav class="navbar">
         <div class="nav-links">
@@ -218,8 +283,23 @@
         <h3>6.Security and safety challenges</h3>
         <p>During construction, multiple theft incidents happened due to the challenging nature of this neighborhood. For instance, water meters and pole needed in plumbing were stolen twice, and electrical wires were also stolen. Thankfully, Omni CRA provided security service and coordinated with local police office to offer extra security for the project. Imagine if it were come from developers, it would have added extra expenses to this project.</p>  
     </div>
-    </div>
 
-    
+<script>
+    // Cursor halo effect
+    const cursorHalo = document.querySelector('.cursor-halo');
+       
+    document.addEventListener('mousemove', (e) => {
+           cursorHalo.style.left = e.clientX + 'px';
+           cursorHalo.style.top = e.clientY + 'px';
+       });
+   
+    document.addEventListener('mousedown', () => {
+           cursorHalo.classList.add('active');
+       });
+   
+    document.addEventListener('mouseup', () => {
+           cursorHalo.classList.remove('active');
+       });
+</script>   
 </body>
 </html>

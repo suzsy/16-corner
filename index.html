@@ -26,7 +26,9 @@
             margin: 0;
             padding: 0;
             position: relative;
+            cursor: none;
         }
+
         body::before {
             content: '';
             position: fixed;
@@ -41,12 +43,13 @@
             background-attachment: fixed; /* This keeps the background fixed while scrolling */
             background-repeat: no-repeat;
         }
-         /*Navbar*/
-         .navbar {
-        background-color: rgba(255, 255, 255, 0.9);
+        /*Navbar*/
+        .navbar {
+        background-color: rgba(0, 0, 0, 0.7);
         padding: 15px 0;
         position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
         z-index: 1000;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -62,79 +65,88 @@
 
         .nav-button {
         padding: 10px 20px;
-        background-color: #333;
-        color: white;
+        color: rgb(245, 240, 242);
+        font-family: 'Futura';
+        font-weight: medium;
         text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        }
-
-        .nav-button:hover {
-        background-color: #555;
-        }
-
-        /* Adjust your header to account for the navbar */
-        .header {
-        margin-top: 80px; /* Add this to push content below navbar */
-        }
-
-         /*contact box*/
-         .contact-form {
-        max-width: 600px;
-        margin: 40px auto;
-        padding: 30px;
-        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: relative;
+        transition: all 0.3s;
+        }
+        
+        .nav-button:hover {
+        color: rgb(239, 183, 183);
         }
 
-        .contact-form h2 {
-        color: #383636;
-        margin-bottom: 20px;
-        text-align: center;
+        .cursor-halo {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s;
+            mix-blend-mode: screen;
+            box-shadow: 0 0 10px rgba(255,255,255,0.6);
         }
 
-        .form-group {
-        margin-bottom: 20px;
+        * {
+            cursor: none;
         }
 
-        .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        color: #444;
+        .cursor-halo.active {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+        }
+    /*adjust to different screen*/
+        @media screen and (max-width: 768px) {
+            /* Navigation bar adjustments */
+            .navbar {
+                padding: 5px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            .cursor-halo {
+                width: 30px;
+                height: 30px;
+                box-shadow: 0 0 6px rgba(255,255,255,0.3);
+            }
         }
 
-        .form-group input,
-        .form-group textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-family: Avenir, sans-serif;
-        }
+        @media screen and (max-width: 480px) {
+            /* Navigation bar adjustments for very small screens */
+            .nav-links {
+                gap: 5px;
+            }
 
-        .form-group textarea {
-        height: 150px;
-        resize: vertical;
-        }
+            .nav-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+            .cursor-halo {
+                width: 20px;
+                height: 20px;
+                box-shadow: 0 0 4px rgba(255,255,255,0.3);
+            }
+        }   
 
-        .submit-button {
-        background-color: #333;
-        color: white;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1em;
-        transition: background-color 0.3s;
-        }
-
-        .submit-button:hover {
-        background-color: #555;
-        }
+        
     </style>
 </head>
 <body>
+    <div class="cursor-halo"></div>
     <!-- Navigation bar -->
     <nav class="navbar">
         <div class="nav-links">
@@ -151,5 +163,22 @@
         <h1>16 Corner</h1>
 
     </div>
+<script>
+     // Cursor halo effect
+     const cursorHalo = document.querySelector('.cursor-halo');
+    
+    document.addEventListener('mousemove', (e) => {
+        cursorHalo.style.left = e.clientX + 'px';
+        cursorHalo.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => {
+        cursorHalo.classList.add('active');
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursorHalo.classList.remove('active');
+    });
+</script>
 </body>
 </html>
