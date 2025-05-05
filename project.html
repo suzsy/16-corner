@@ -5,26 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Summary</title>
     <style>
-        .header {
+        html, body {
+        margin: 10%;
+        }
+
+          .header {
         text-align: center;
-        padding: 40px 0 20px 0;
+        padding: 30px 0 20px 0;
         max-width: 800px;
-        margin: 0 auto;
-        background-color: rgba(245, 240, 242, 0.8); /* 0.8 is the opacity - adjust as needed */
-        border-radius: 10px;
-        padding: 20px; 
+        margin: 0 auto 60px auto;
+        padding: 20px;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            color: #383636;
-            margin-bottom: 15px;
+            font-size: 3em;
+            color: #f7eff1;
+            bottom: 30px;
         }
 
 
         body {
             font-family: Avenir, sans-serif;
-            background-color: rgb(245, 245, 245);
+            background-color: #BD4B4B;
             margin: 0;
             padding: 0;
             position: relative;
@@ -43,7 +45,7 @@
          /*Navbar*/
         .navbar {
         background-color: rgba(0, 0, 0, 0.7);
-        padding: 15px 0;
+        padding: 10px 0;
         position: fixed;
         top: 0;
         left: 0;
@@ -106,11 +108,8 @@
         }
 
         .project-section {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
             padding: 25px;
             margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .project-section h2 {
@@ -186,7 +185,24 @@
                 box-shadow: 0 0 4px rgba(255,255,255,0.3);
             }
         }   
-       
+        /*progress bar*/
+
+        .progress-container {
+            position: fixed;
+            top: 60px; /* Position right under the navbar */
+            width: 100%;
+            left:0;
+            height: 8px;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(to right, white,rgb(239, 183, 183));
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
+
     </style>
 </head>
 <body>
@@ -201,7 +217,9 @@
             <a href="resources.html" class="nav-button">Resources</a>
         </div>
     </nav>
-
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
     <!-- Page content -->
     <div class="header">
         <h1>Project Summary</h1>
@@ -300,6 +318,13 @@
     document.addEventListener('mouseup', () => {
            cursorHalo.classList.remove('active');
        });
+     // Reading progress bar
+     window.onscroll = function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+    };
 </script>   
 </body>
 </html>
