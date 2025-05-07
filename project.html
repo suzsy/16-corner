@@ -18,6 +18,7 @@
         }
 
         .header h1 {
+            font-family: futura;
             font-size: 3em;
             color: #f7eff1;
             bottom: 30px;
@@ -25,7 +26,6 @@
 
 
         body {
-            font-family: Avenir, sans-serif;
             background-color: #BD4B4B;
             margin: 0;
             padding: 0;
@@ -41,6 +41,42 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+        }
+        /*back to top button*/
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .back-to-top::after {
+            content: '↑';
+            font-size: 20px;
         }
          /*Navbar*/
         .navbar {
@@ -105,33 +141,37 @@
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
+            text-align: left;
         }
 
         .project-section {
             padding: 25px;
             margin-bottom: 10px;
+            text-align: left;
         }
 
         .project-section h2 {
-            color: #d8c8c8;
+            font-family: Avenir bold;
+            color: #decfcf;
             font-size: 1.8em;
             margin-bottom: 0;
         }
 
         .project-section h3 {
-            font-size: 1.5em;
-            color: #c8bbbb;
+            font-family: sans-serif Bold;
+            font-size: 1.2em;
+            color: #d8c8c8;
             margin: 15px 0;
             text-align: left;
-            text-indent: 2em;
         }
 
         .project-section p {
+            font-family: sans-serif;
+            font-size:1em;
             line-height: 1.6;
-            color: #c8bbbb;
+            color: #d8c8c8;
             margin: 15px 0;
             text-align: left;
-            text-indent: 2em;
         }
 
         .project-image {
@@ -301,14 +341,18 @@
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Being a real estate developer means having extra capital set aside to be able to carry cost moving the project forward. Even 16 corner was seemingly well-funded, it was not enough to cover the shortfalls caused by unforeseeable events. </p>
 
         <h3>4.The challenge of working with municipalities</h3>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;. 16 Corner receive parts of funding from Miami Dade County Surtax loan program. Each time, the draw application generally takes a few months to review and process, the lengthy and time-consuming process often adds extra financial stress and workload on boutique developers. </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;16 Corner receive parts of funding from Miami Dade County Surtax loan program. Each time, the draw application generally takes a few months to review and process, the lengthy and time-consuming process often adds extra financial stress and workload on boutique developers. </p>
 
         <h3>5.The cost of doing things right. </h3>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;1535 was paused for about 2 years during COVID due to strict construction practice and the difficulty faced in moving tenants around for renovation. </p>
 
         <h3>6.Security and safety challenges</h3>
-        <p>During construction, multiple theft incidents happened due to the challenging nature of this neighborhood. For instance, water meters and pole needed in plumbing were stolen twice, and electrical wires were also stolen. Thankfully, Omni CRA provided security service and coordinated with local police office to offer extra security for the project. Imagine if it were come from developers, it would have added extra expenses to this project.</p>  
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;During construction, multiple theft incidents happened due to the challenging nature of this neighborhood. For instance, water meters and pole needed in plumbing were stolen twice, and electrical wires were also stolen. Thankfully, Omni CRA provided security service and coordinated with local police office to offer extra security for the project. Imagine if it were come from developers, it would have added extra expenses to this project.</p>  
+
+        <p style="color: white; text-align: center; margin: 20px 0 ;">Documented and written by Su Zhang</p>
+        
     </div>
+    <button class="back-to-top" onclick="scrollToTop()"></button>
 
 <script>
     // Cursor halo effect
@@ -334,6 +378,24 @@
         const scrolled = (winScroll / height) * 100;
         document.getElementById("progressBar").style.width = scrolled + "%";
     };
+    // Back to Top functionality
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', function() {
+        // Show button when user scrolls down 300px
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 </script>   
 </body>
 </html>

@@ -18,13 +18,13 @@
         }
 
         .header h1 {
+            font-family: futura;
             font-size: 3em;
             color: #f7eff1;
             bottom: 30px;
         }
 
         body {
-            font-family: Avenir, sans-serif;
             background-color:#80b9c6;
             margin: 0;
             padding: 0;
@@ -39,6 +39,42 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+        }
+        /*back to top button*/
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .back-to-top::after {
+            content: '↑';
+            font-size: 20px;
         }
         /*Navbar*/
         .navbar {
@@ -108,17 +144,28 @@
         }
 
         .award-section {
-            padding: 25px;
-            margin-bottom: 30px;
+            padding: 15px;
+            margin-bottom: 15px;
         }
 
         .award-section h2 {
+            font-family: avenir;
             color: #383636;
             font-size: 1.8em;
             margin-bottom: 15px;
         }
 
+        .award-section h3 {
+            font-family: sans-serif;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #444;
+            margin: 15px 0;
+        }
+
         .award-section p {
+            font-family: sans-serif;
+            font-size:1em;
             line-height: 1.6;
             color: #444;
             margin: 15px 0;
@@ -131,14 +178,14 @@
             margin: 15px 0;
         }
         .award-link {
-            color: #0066cc;             /* Link color */
+            color: #444;             /* Link color */
             text-decoration: none;      /* Removes underline */
             font-weight: 500;          /* Makes text slightly bold */
             transition: color 0.3s;    /* Smooth color transition on hover */
         }
 
         .award-link:hover {
-            color: #003366;            /* Darker color when hovering */
+            color:whitesmoke;            /* Darker color when hovering */
             text-decoration: underline; /* Adds underline on hover */
         }
        /*adjust to different screen*/
@@ -212,7 +259,7 @@
             <a href="resources.html" class="nav-button">Resources</a>
         </div>
     </nav>
-    
+
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
@@ -231,11 +278,11 @@
 
         <div class="award-section">
             <h2>Awards</h2>
-            <h3>1. <a href="https://cdn.wildapricot.com/204809/resources/Documents/2019%20SFCDC%20Report%20(FULL).pdf?version=1684955807000&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLndpbGRhcHJpY290LmNvbS8yMDQ4MDkvcmVzb3VyY2VzL0RvY3VtZW50cy8yMDE5JTIwU0ZDREMlMjBSZXBvcnQlMjAoRlVMTCkucGRmP3ZlcnNpb249MTY4NDk1NTgwNzAwMCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0NTAwMDM0NH0sIklwQWRkcmVzcyI6eyJBV1M6U291cmNlSXAiOiIwLjAuMC4wLzAifX19XX0_&Signature=AdF65S0qJCMGXGRWRaDcnn97Kg~iAPHr6AvN9eJ5m6Z7Axw9LydJJJWSUhpo-m1Czrfbi0p1okmC-1ub6YG4R13oYoy3kjBVFmfl2WH5WsBKPWuDi-P39F1PXxX-X4um1vhUAfwTf4ZqVaItbMS8IMqDFS3WzlizmsB-o8qJn3idx61wNDxu2HHCzDePDuJdf3BmOW3Nx2dLBoPvKqmpokIO7oXp3cPYcxuT8wlcHzZVCuKQDKeRwFU3dTnZkkII1lye~1vhjGk8w6jBUkCHa7hb6heFzts7Z17mY7QUw7xzLq9w1CMxhjvHj4TClOhBzJis8SbQcutaK5a1f9hh2w__&Key-Pair-Id=K27MGQSHTHAGGF" target="_blank" class="award-link">
-                SFCDC Awards for Excellence in Community Development</a></h3>
+            <h3><a href="https://cdn.wildapricot.com/204809/resources/Documents/2019%20SFCDC%20Report%20(FULL).pdf?version=1684955807000&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLndpbGRhcHJpY290LmNvbS8yMDQ4MDkvcmVzb3VyY2VzL0RvY3VtZW50cy8yMDE5JTIwU0ZDREMlMjBSZXBvcnQlMjAoRlVMTCkucGRmP3ZlcnNpb249MTY4NDk1NTgwNzAwMCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0NTAwMDM0NH0sIklwQWRkcmVzcyI6eyJBV1M6U291cmNlSXAiOiIwLjAuMC4wLzAifX19XX0_&Signature=AdF65S0qJCMGXGRWRaDcnn97Kg~iAPHr6AvN9eJ5m6Z7Axw9LydJJJWSUhpo-m1Czrfbi0p1okmC-1ub6YG4R13oYoy3kjBVFmfl2WH5WsBKPWuDi-P39F1PXxX-X4um1vhUAfwTf4ZqVaItbMS8IMqDFS3WzlizmsB-o8qJn3idx61wNDxu2HHCzDePDuJdf3BmOW3Nx2dLBoPvKqmpokIO7oXp3cPYcxuT8wlcHzZVCuKQDKeRwFU3dTnZkkII1lye~1vhjGk8w6jBUkCHa7hb6heFzts7Z17mY7QUw7xzLq9w1CMxhjvHj4TClOhBzJis8SbQcutaK5a1f9hh2w__&Key-Pair-Id=K27MGQSHTHAGGF" target="_blank" class="award-link">
+                1. SFCDC Awards for Excellence in Community Development</a></h3>
             <p>16 Corner won the Awards for Excellence in Community Development by South Florida Community Development Coalition in 2019.</p>
 
-            <h3>2. <a href="https://redevelopment.net/2020-fra-awards/" target="_blank" class="award-link">FRA Outstanding Housing Project Award Winner</a></h3>
+            <h3><a href="https://redevelopment.net/2020-fra-awards/" target="_blank" class="award-link">2. FRA Outstanding Housing Project Award Winner</a></h3>
             <p>16 Corner won the Outstanding Housing Project Award by The Florida Redevelopment Association in 2020.</p>
             <div class="video-container">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/AIuK6C5fbMw?si=13dfAByrNY-r80Jd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -244,26 +291,25 @@
     
         <div class="award-section">
             <h2>Publications</h2>
-            <h3>1. <a href="https://www.wlrn.org/news/2019-01-30/miami-redevelopment-agency-breaks-ground-on-overtown-affordable-housing-project" target ="_blank" class="award-link"> Miami Redevelopment Agency Breaks Ground On Overtown Affordable Housing Project
-            </a> 
-            by WLRN Public Media, 2019 </h3>
+            <h3><a href="https://www.wlrn.org/news/2019-01-30/miami-redevelopment-agency-breaks-ground-on-overtown-affordable-housing-project" target ="_blank" class="award-link">1. Miami Redevelopment Agency Breaks Ground On Overtown Affordable Housing Project by WLRN Public Media, 2019
+            </a></h3>
         
-            <h3>2. <a href="https://www.miamiherald.com/news/local/community/miami-dade/article230352704.html" target ="_blank" class="award-link"> These fully redone apartments may help solve Miami’s housing crisis.
-                </a> 
-                by Miami Herald, 2019 </h3>
+            <h3><a href="https://www.miamiherald.com/news/local/community/miami-dade/article230352704.html" target ="_blank" class="award-link">2. These fully redone apartments may help solve Miami’s housing crisis by Miami Herald, 2019
+                </a>  </h3>
 
-            <h3>3. <a href="https://omnicra.com/16-corner-affordable-housing-preservation/" target="_blank" class="award-link">16 Corner Housing Preservation</a>
-                </a>
-                by OMNI CRA</h3>
+            <h3><a href="https://omnicra.com/16-corner-affordable-housing-preservation/" target="_blank" class="award-link">3. 16 Corner Housing Preservation by OMNI CRA</a>
+                </a></h3>
 
-            <h3>4. <a href="https://preservation-next.enterprisecommunity.org/16-corner" target="_blank" class="award-link">16 Corner Case Study</a>
-                by Enterprise Community Partners</h3>
+            <h3><a href="https://preservation-next.enterprisecommunity.org/16-corner" target="_blank" class="award-link">4.16 Corner Case Study by Enterprise Community Partners</a>
+                </h3>
 
-            <h3>5. <a href="https://www.nbcmiami.com/news/local/buildings-in-overtown-to-be-refurbished-into-affordable-housing/2789159/" target="_blank" class="award-link">Buildings in Overtown to be Refurbished Into Affordable Housing</a>
-                </a>
-                by NBC Miami, 2022</h3>
+            <h3><a href="https://www.nbcmiami.com/news/local/buildings-in-overtown-to-be-refurbished-into-affordable-housing/2789159/" target="_blank" class="award-link">5.Buildings in Overtown to be Refurbished Into Affordable Housing by NBC Miami, 2022</a>
+                </a></h3>
         </div>
+        <button class="back-to-top" onclick="scrollToTop()"></button>
     </div>
+    
+    
 <script>
      // Cursor halo effect
      const cursorHalo = document.querySelector('.cursor-halo');
@@ -287,6 +333,24 @@
         const scrolled = (winScroll / height) * 100;
         document.getElementById("progressBar").style.width = scrolled + "%";
     };
+    // Back to Top functionality
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', function() {
+        // Show button when user scrolls down 300px
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 </script>
 </body>
 </html>

@@ -23,6 +23,7 @@
         }
 
         .header h1 {
+            font-family: futura;
             font-size: 3em;
             color: #EFB7B7;
             bottom: 30px;
@@ -56,6 +57,8 @@
             display:grid;
             grid-template-columns: 1fr 1rem 1fr;
             gap: 1rem;
+            position: relative;
+            min-height: 100vh;
         }
 
         .column {
@@ -71,7 +74,10 @@
             height: 100%;
             background-color: #2228;
             left: 50%;
-            translate: -50%;
+            transform: translateX(-50%);
+            top: 0;
+            z-index: 1;
+            
         }
 
         .row {
@@ -636,7 +642,8 @@
         <button class="back-to-top" onclick="scrollToTop()"></button>
     </div>
     <div class="cursor-halo"></div>
-
+    <p style="color: white; text-align: center; margin: 20px 0 ;">Researched and written by Su Zhang</p>
+    </div>
 <script>
     /*scroll up and down*/
     let lastHoveredContent = null;
