@@ -2,52 +2,558 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>16 Corner</title>
     <style>
-        .header {
-        text-align: center;
-        padding: 40px 0 20px 0;
-        max-width: 800px;
-        margin: 0 auto;
-        border-radius: 10px;
-        padding: 20px; 
-        }
-
-        .header h1 {
-            font:futura;
-            font-size: 5em;
-            color: #383636;
-            margin-bottom: 15px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Futura', 'sans-serif';
-            background-color: rgb(245, 245, 245);
-            margin: 0;
-            padding: 0;
-            position: relative;
+            font-family: 'Futura', sans-serif;
             cursor: none;
+            background-color: #000;
+            transition: background-color 0.3s ease;
         }
 
-        body::before {
-            content: '';
+        .color-transition {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-image: url('Image/1541\ Historic.png');
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%,
+                rgba(0,0,0,0.8) 10%,
+                rgba(0,0,0,0.6) 20%,
+                rgba(0,0,0,0.4) 30%,
+                rgba(0,0,0,0.2) 40%,
+                rgba(255,255,255,0) 50%
+            );
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        section {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: transparent;
+        }
+
+        /* Opening Section */
+        .opening {
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding-top: 0;
+            z-index: 5;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .opening h1 {
+            color: white;
+            font-size: 6em;
+            z-index: 2;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            width: auto;
+            padding: 0;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .opening h1.scrolled {
+            color: white;
+            font-size: 4em;
+            top: 20px;
+            left: 80%;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .train-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('Image/train-bg.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* This keeps the background fixed while scrolling */
-            background-repeat: no-repeat;
+            opacity: 0.3;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
         }
+
+        /* Introduction Section */
+        .introduction {
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20%;
+            z-index: 4;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            opacity: 1;
+            padding-top: 120px;
+        }
+
+        .introduction h1 {
+            color: black;
+            font-size: 6em;
+            margin-bottom: 2rem;
+            transform: translateX(-100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .introduction p {
+            color: black;
+            font-size: 1.5em;
+            line-height: 1.6;
+            text-align: center;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 2rem;
+        }
+
+        .team-members {
+            color: black;
+            font-size: 1.2em;
+            line-height: 2;
+            text-align: left;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 5%;
+            margin-top: 2rem;
+            width: 90%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            white-space: nowrap;
+        }
+
+        .team-section {
+            margin-top: 1rem;
+            opacity: 1;
+            text-align: left;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .team-section h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1em;
+            opacity: 1;
+            text-align: left;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .team-section p {
+            margin: 0;
+            font-size: 1em;
+            opacity: 1;
+            text-align: left;
+            width: 100%;
+            padding-left: 1rem;
+            white-space: nowrap;
+        }
+
+        /* Historic Section */
+        .historic {
+            background-image: url('Image/1541\ Historic.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: white;
+            z-index: 3;
+            transform: translateY(0);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            opacity: 1;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .historic::before {
+            display: none;
+        }
+
+        /* Current Section */
+        .current {
+            background-image: url('Image/current-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 2;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            z-index: 1;
+            transform: translateY(0);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            opacity: 1;
+            min-height: 100vh;
+        }
+
+        .contact-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2.16rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            max-width: 648px;
+            width: 100%;
+            margin-bottom: 2rem;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            position: relative;
+        }
+
+        .contact-box h2 {
+            color: white;
+            margin-bottom: 1.62rem;
+            font-size: 2.16em;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.08rem;
+            width: 100%;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.648rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.972em;
+            width: 100%;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.972em;
+        }
+
+        .contact-form button {
+            padding: 0.648rem 1.296rem;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.972em;
+            font-weight: bold;
+            margin-top: 0.648rem;
+        }
+
+        .contact-form button:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 10px 0;
+            text-align: left;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            justify-content: space-between;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.8em;
+        }
+
+        footer p:first-child {
+            margin-right: auto;
+        }
+
+        /* Cursor Halo */
+        .cursor-halo {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s;
+            mix-blend-mode: screen;
+            box-shadow: 0 0 10px rgba(255,255,255,0.6);
+        }
+
+        .cursor-halo.active {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 5px 0;
+            }
+
+            .nav-links {
+                flex-wrap: nowrap;
+                gap: 10px;
+                padding: 0 10px;
+                overflow-x: auto;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+                white-space: nowrap;
+            }
+
+            .cursor-halo {
+                width: 30px;
+                height: 30px;
+                box-shadow: 0 0 6px rgba(255,255,255,0.3);
+            }
+
+            .opening h1 {
+                font-size: 4em;
+            }
+
+            .introduction h1 {
+                font-size: 3em;
+            }
+
+            .introduction p {
+                font-size: 1.2em;
+            }
+
+            .contact-box {
+                padding: 1.5rem;
+                max-width: 90%;
+            }
+
+            .contact-box h2 {
+                font-size: 1.8em;
+                margin-bottom: 1.2rem;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 0.5rem;
+                font-size: 0.9em;
+            }
+
+            .contact-form button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9em;
+            }
+
+            .success-message p {
+                font-size: 1.2em;
+            }
+
+            .team-members {
+                font-size: 1em;
+                padding: 0 3%;
+            }
+
+            .team-section h3 {
+                font-size: 1em;
+            }
+
+            .team-section p {
+                font-size: 0.9em;
+            }
+
+            .scroll-indicator {
+                left: 20px;
+            }
+            
+            .scroll-text {
+                font-size: 0.9em;
+            }
+
+            .scroll-line {
+                height: 120px;
+            }
+
+            footer {
+                text-align: center;
+                justify-content: center;
+                padding: 10px;
+            }
+
+            footer p:first-child {
+                margin: 0;
+            }
+
+            footer p:last-child {
+                display: none;
+            }
+
+        }
+
+        @media screen and (max-width: 480px) {
+            .nav-links {
+                gap: 5px;
+                padding: 0 5px;
+            }
+
+            .nav-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+
+            .cursor-halo {
+                width: 20px;
+                height: 20px;
+                box-shadow: 0 0 4px rgba(255,255,255,0.3);
+            }
+
+            .opening h1 {
+                font-size: 3em;
+            }
+
+            .introduction h1 {
+                font-size: 2.5em;
+            }
+
+            .introduction p {
+                font-size: 1em;
+                padding: 0 10%;
+            }
+
+            .contact-box {
+                padding: 1rem;
+                max-width: 95%;
+            }
+
+            .contact-box h2 {
+                font-size: 1.5em;
+                margin-bottom: 1rem;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 0.4rem;
+                font-size: 0.8em;
+            }
+
+            .contact-form button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8em;
+            }
+
+            .success-message p {
+                font-size: 1em;
+            }
+
+            .team-members {
+                font-size: 0.9em;
+                padding: 0 2%;
+            }
+
+            .team-section h3 {
+                font-size: 0.9em;
+            }
+
+            .team-section p {
+                font-size: 0.8em;
+            }
+
+            .scroll-indicator {
+                left: 15px;
+            }
+            
+            .scroll-text {
+                font-size: 0.8em;
+            }
+
+            .scroll-line {
+                height: 100px;
+            }
+
+            .back-to-top {
+                width: 35px;
+                height: 35px;
+                bottom: 50px;
+                right: 15px;
+            }
+
+            .back-to-top::after {
+                font-size: 18px;
+            }
+            
+            footer {
+                height: 35px;
+                padding: 5px;
+            }
+
+            footer p {
+                font-size: 0.7em;
+            }
+        }
+
         /*back to top button*/
         .back-to-top {
             position: fixed;
-            bottom: 20px;
+            bottom: 40px;
             right: 20px;
             z-index: 1000;
             background-color: rgba(255, 255, 255, 0.8);
@@ -80,110 +586,203 @@
             content: '↑';
             font-size: 20px;
         }
-        /*Navbar*/
+
+        /* Navbar */
         .navbar {
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 10px 0;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        max-width: 800px;
-        margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .nav-button {
-        padding: 10px 20px;
-        color: rgb(245, 240, 242);
-        font-family: 'Futura';
-        font-weight: medium;
-        text-decoration: none;
-        border-radius: 10px;
-        position: relative;
-        transition: all 0.3s;
+            padding: 10px 20px;
+            color: rgb(245, 240, 242);
+            font-family: 'Futura';
+            font-weight: medium;
+            text-decoration: none;
+            border-radius: 10px;
+            position: relative;
+            transition: all 0.3s;
         }
         
         .nav-button:hover {
-        color: rgb(239, 183, 183);
+            color: rgb(239, 183, 183);
         }
 
-        .cursor-halo {
+        /* Add smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add this to your existing styles */
+        .scroll-indicator {
             position: fixed;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: width 0.3s, height 0.3s;
-            mix-blend-mode: screen;
-            box-shadow: 0 0 10px rgba(255,255,255,0.6);
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        * {
-            cursor: none;
+        .scroll-line {
+            width: 1px;
+            height: 150px;
+            background-color: white;
+            margin-bottom: 20px;
         }
 
-        .cursor-halo.active {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+        .scroll-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 1em;
+            letter-spacing: 2px;
+            transform: rotate(180deg);
         }
-    /*adjust to different screen*/
+
         @media screen and (max-width: 768px) {
-            /* Navigation bar adjustments */
-            .navbar {
-                padding: 5px 0;
+            .scroll-indicator {
+                left: 20px;
+            }
+            
+            .scroll-text {
+                font-size: 1em;
             }
 
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 10px;
-                padding: 0 10px;
-            }
-
-            .nav-button {
-                padding: 8px 15px;
-                font-size: 0.9em;
-            }
-            .cursor-halo {
-                width: 30px;
-                height: 30px;
-                box-shadow: 0 0 6px rgba(255,255,255,0.3);
+            .scroll-line {
+                height: 120px;
             }
         }
 
-        @media screen and (max-width: 480px) {
-            /* Navigation bar adjustments for very small screens */
-            .nav-links {
-                gap: 5px;
-            }
+        /* Comparison Slider */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-            .nav-button {
-                padding: 6px 12px;
-                font-size: 0.8em;
-            }
-            .cursor-halo {
-                width: 20px;
-                height: 20px;
-                box-shadow: 0 0 4px rgba(255,255,255,0.3);
-            }
-        }   
+        .comparison-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: white;
+        }
 
-        
+        .comparison-slider .historic-img {
+            z-index: 2;
+        }
+
+        .comparison-slider .current-img {
+            z-index: 1;
+        }
+
+        .comparison-slider .slider {
+            position: absolute;
+            z-index: 3;
+            width: 8px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: ew-resize;
+        }
+
+        .comparison-slider .slider::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .comparison-slider .slider::after {
+            content: '← →';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .comparison-slider .slider-text {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black;
+            font-size: 12px;
+            font-weight: normal;
+            white-space: nowrap;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .success-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .success-message.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-message p {
+            color: white;
+            font-size: 1.5em;
+            text-align: center;
+            padding: 2rem;
+        }
     </style>
 </head>
 <body>
     <div class="cursor-halo"></div>
+    <div class="color-transition"></div>
+    
+    <!-- Add this after the cursor-halo div -->
+    <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        <div class="scroll-text">SCROLL DOWN</div>
+    </div>
+    
     <!-- Navigation bar -->
     <nav class="navbar">
         <div class="nav-links">
@@ -195,11 +794,62 @@
         </div>
     </nav>
 
-    <!-- Page content -->
-    <div class="header">
+    <section class="opening">
+        <div class="train-bg"></div>
         <h1>16 Corner</h1>
+    </section>
 
+    <section class="introduction">
+        <h1>16 Corner</h1>
+        <p>16 Corner is an affordable housing project located in historic Overtown, Miami, Florida. It was developed by The Vagabond Group from 2018 to 2025.</p>
+        <div class="team-members">
+            <div class="team-section">
+                <h3>Vagabond Team:</h3>
+                <p>Developer: Avra Jain</p>
+                <p>Project Architect: Laura Weinstein-Berman (2018-2020)</p>
+                <p>Architect: Vagabond ARQ (2020-present)</p>
+                <p>Project Manager: Su Zhang (2022-present)</p>
+                <p>Construction Supervisor: Douglas Castro</p>
+            </div>
+            <div class="team-section">
+                <h3>External Team:</h3>
+                <p>General Contractor: Century Builders & Restoration</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="historic">
+        <div class="comparison-slider">
+            <img src="Image/1541 Historic.png" alt="Historic Image" class="historic-img">
+            <img src="Image/after.png" alt="Current Image" class="current-img">
+            <div class="slider">
+                <div class="slider-text" style="color: white;">move to the right</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="contact-box">
+            <h2>Contact Us</h2>
+            <form class="contact-form" action="https://formspree.io/f/xvgazljk" method="POST">
+                <input type="hidden" name="_subject" value="New Contact Form Submission">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="success-message">
+                <p>Message Sent!</p>
+            </div>
     </div>
+    </section>
+    
+    <button class="back-to-top" onclick="scrollToTop()"></button>
+    <footer>
+        <p>© 16 Corner 2025. All rights reserved.</p>
+        <p>&nbsp;&nbsp;Designed and developed by Su Zhang</p>
+    </footer>
+
 <script>
      // Cursor halo effect
      const cursorHalo = document.querySelector('.cursor-halo');
@@ -216,6 +866,182 @@
     document.addEventListener('mouseup', () => {
         cursorHalo.classList.remove('active');
     });
+
+        // Scroll animations
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const footer = document.querySelector('footer');
+            const openingTitle = document.querySelector('.opening h1');
+
+            // Show footer only when near bottom of page
+            if (scrollPosition + windowHeight >= documentHeight - 50) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+
+            // Title transition to top right and fade out, then back to center
+            if (scrollPosition > windowHeight * 0.2) {
+                openingTitle.classList.add('scrolled');
+            } else {
+                openingTitle.classList.remove('scrolled');
+                openingTitle.style.transform = 'translate(-50%, -50%)';
+                openingTitle.style.top = '50%';
+                openingTitle.style.left = '50%';
+                openingTitle.style.opacity = '1';
+            }
+
+            const maxScroll = document.documentElement.scrollHeight - windowHeight;
+            const scrollPercentage = Math.min(scrollPosition / (windowHeight * 0.5), 1);
+
+            // Update background color based on scroll position
+            const body = document.body;
+            const r = Math.floor(255 * scrollPercentage);
+            const g = Math.floor(255 * scrollPercentage);
+            const b = Math.floor(255 * scrollPercentage);
+            body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+            // Update color transition gradient opacity
+            const colorTransition = document.querySelector('.color-transition');
+            colorTransition.style.opacity = 1 - scrollPercentage;
+
+            // Parallax effect for train
+            const trainBg = document.querySelector('.train-bg');
+            trainBg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+
+            // Opening section title fade
+            openingTitle.style.opacity = Math.max(0, 1 - scrollPosition / (windowHeight * 0.5));
+            openingTitle.style.transform = `translateY(${scrollPosition * 0.2}px)`;
+
+            // Section transitions
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const scrollTrigger = sectionTop - windowHeight * 0.7;
+
+                if (scrollPosition > scrollTrigger) {
+                    section.style.transform = 'translateY(0)';
+                    section.style.opacity = '1';
+                    
+                    // Animate content within sections
+                    if (section.classList.contains('introduction')) {
+                        const introH1 = section.querySelector('h1');
+                        const introP = section.querySelector('p');
+                        const teamMembers = section.querySelector('.team-members');
+                        
+                        introH1.style.transform = 'translateX(0)';
+                        introP.style.opacity = '1';
+                        introP.style.transform = 'translateY(0)';
+                        
+                        if (teamMembers) {
+                            teamMembers.style.opacity = '1';
+                            teamMembers.style.transform = 'translateY(0)';
+                        }
+                    }
+                    
+                    if (section.classList.contains('contact')) {
+                        const contactBox = section.querySelector('.contact-box');
+                        contactBox.style.opacity = '1';
+                        contactBox.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+
+            // Scroll indicator
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollPosition > 100) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '0.8';
+            }
+        });
+
+        // Comparison Slider
+        const slider = document.querySelector('.comparison-slider .slider');
+        const historicImg = document.querySelector('.comparison-slider .historic-img');
+        let isDragging = false;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDragging = true;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const sliderRect = slider.parentElement.getBoundingClientRect();
+            const x = Math.max(0, Math.min(e.clientX - sliderRect.left, sliderRect.width));
+            const percentage = (x / sliderRect.width) * 100;
+            
+            slider.style.left = `${percentage}%`;
+            historicImg.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        });
+
+        // Back to Top functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', function() {
+            const contactSection = document.querySelector('.contact');
+            const contactTop = contactSection.offsetTop;
+            const windowHeight = window.innerHeight;
+            
+            // Show button when user reaches contact section
+            if (window.scrollY > contactTop - windowHeight) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Contact Form Submission
+        const contactForm = document.querySelector('.contact-form');
+        const successMessage = document.querySelector('.success-message');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            successMessage.classList.add('visible');
+            
+            // Submit the form data
+            const formData = new FormData(contactForm);
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Reset form
+                    contactForm.reset();
+                    // Hide success message after 3 seconds
+                    setTimeout(() => {
+                        successMessage.classList.remove('visible');
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem sending your message. Please try again later.');
+            });
+        });
 </script>
 </body>
 </html>
