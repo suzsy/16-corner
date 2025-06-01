@@ -745,50 +745,6 @@
     <p style="color: white; text-align: center; margin: 20px 0 ;">Researched and written by Su Zhang</p>
     </div>
 <script>
-    /*scroll up and down*/
-    let lastHoveredContent = null;
-    let fadeTimeout = null;
-    let lastScrollPosition = window.scrollY;
-
-    window.addEventListener('scroll', function() {
-        const contents = document.querySelectorAll('.content');
-        const windowHeight = window.innerHeight;
-        const currentScrollPosition = window.scrollY;
-        const isScrollingDown = currentScrollPosition > lastScrollPosition;
-        lastScrollPosition = currentScrollPosition;
-        
-        contents.forEach((content, index) => {
-            const contentPosition = content.getBoundingClientRect().top;
-            const contentHeight = content.getBoundingClientRect().height;
-            
-            // If this content is being hovered, don't fade it
-            if (content === lastHoveredContent) {
-                return;
-            }
-            
-            // Start fading when the content is 70% scrolled through
-            if (contentPosition < windowHeight * 0.7) {
-                // Calculate fade progress based on scroll position
-                const fadeStart = windowHeight * 0.7;
-                const fadeEnd = -contentHeight;
-                const fadeProgress = (contentPosition - fadeStart) / (fadeEnd - fadeStart);
-                
-                // Apply fade based on scroll position and direction
-                if (isScrollingDown) {
-                    content.style.opacity = Math.max(0, 1 - fadeProgress);
-                    content.style.transform = `translateY(${fadeProgress * 20}px)`;
-                } else {
-                    // When scrolling up, immediately restore content
-                    content.style.opacity = '1';
-                    content.style.transform = 'translateY(0)';
-                }
-            } else {
-                content.style.opacity = '1';
-                content.style.transform = 'translateY(0)';
-            }
-        });
-    });
-
     // Add hover event listeners to all content boxes
     document.querySelectorAll('.content').forEach(content => {
         content.addEventListener('mouseenter', function() {
@@ -804,6 +760,7 @@
             window.dispatchEvent(new Event('scroll'));
         });
     });
+
     //hide music player//
     function togglePlayer() {
         const player = document.querySelector('.audio-player');
@@ -811,6 +768,7 @@
         player.classList.toggle('hidden');
         toggle.classList.toggle('hidden');
     }
+
     // Back to Top functionality
     const backToTopButton = document.querySelector('.back-to-top');
 
@@ -845,6 +803,7 @@
     document.addEventListener('mouseup', () => {
         cursorHalo.classList.remove('active');
     });
+    
 </script>
 </body>
 </html>
