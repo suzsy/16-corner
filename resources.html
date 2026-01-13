@@ -225,7 +225,7 @@
 
         .progress-container {
             position: fixed;
-            top: 60px; /* Position right under the navbar */
+            top: 60px; /* Default position, will be updated by JavaScript */
             width: 100%;
             left:0;
             height: 8px;
@@ -344,6 +344,20 @@
     document.addEventListener('mouseup', () => {
         cursorHalo.classList.remove('active');
     });
+
+    // Position progress bar dynamically based on navbar height
+    function updateProgressBarPosition() {
+        const navbar = document.querySelector('.navbar');
+        const progressContainer = document.querySelector('.progress-container');
+        if (navbar && progressContainer) {
+            const navbarHeight = navbar.offsetHeight;
+            progressContainer.style.top = navbarHeight + 'px';
+        }
+    }
+
+    // Update on load and resize
+    updateProgressBarPosition();
+    window.addEventListener('resize', updateProgressBarPosition);
 
     // Reading progress bar
     window.onscroll = function() {
