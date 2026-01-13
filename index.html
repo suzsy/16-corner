@@ -294,29 +294,37 @@
         footer {
             background-color: #000;
             color: white;
-            padding: 10px 0;
-            text-align: left;
+            padding: 10px 20px;
+            text-align: center;
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            height: 40px;
+            min-height: 50px;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding-left: 20px;
-            padding-right: 20px;
-            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        footer.visible {
+            opacity: 1;
+            visibility: visible;
         }
 
         footer p {
-            margin: 0;
+            margin: 2px 0;
             font-size: 0.8em;
+            line-height: 1.2;
         }
 
         footer p:first-child {
-            margin-right: auto;
+            margin-right: 0;
         }
 
         /* Cursor Halo */
@@ -436,15 +444,17 @@
             footer {
                 text-align: center;
                 justify-content: center;
+                align-items: center;
                 padding: 10px;
+                min-height: 50px;
             }
 
-            footer p:first-child {
-                margin: 0;
+            footer p {
+                margin: 2px 0;
             }
 
             footer p:last-child {
-                display: none;
+                display: block;
             }
 
         }
@@ -541,12 +551,13 @@
             }
             
             footer {
-                height: 35px;
+                min-height: 50px;
                 padding: 5px;
             }
 
             footer p {
                 font-size: 0.7em;
+                margin: 2px 0;
             }
         }
 
@@ -789,7 +800,7 @@
             <a href="index.html" class="nav-button">Home</a>
             <a href="history.html" class="nav-button">History</a>
             <a href="project.html" class="nav-button">Project</a>
-            <a href="impact.html" class="nav-button">Impact</a>
+            <a href="Impact.html" class="nav-button">Impact</a>
             <a href="resources.html" class="nav-button">Resources</a>
         </div>
     </nav>
@@ -801,7 +812,7 @@
 
     <section class="introduction">
         <h1>16 Corner</h1>
-        <p>16 Corner is a public-private partnership affordable housing project located in historic Overtown, Miami, Florida. It was restored by The Vagabond Group from 2018 to 2026.</p>
+        <p>16 Corner is an affordable housing project located in historic Overtown, Miami, Florida. It was developed by The Vagabond Group from 2018 to 2026.</p>
         <div class="team-members">
             <div class="team-section">
                 <h3>Partnership:</h3>
@@ -828,7 +839,7 @@
     <section class="historic">
         <div class="comparison-slider">
             <img src="Image/1541 Historic.png" alt="Historic Image" class="historic-img">
-            <img src="Image/1541 After.png" alt="Current Image" class="current-img">
+            <img src="Image/after.png" alt="Current Image" class="current-img">
             <div class="slider">
                 <div class="slider-text" style="color: white;">move to the right</div>
             </div>
@@ -853,8 +864,8 @@
     
     <button class="back-to-top" onclick="scrollToTop()"></button>
     <footer>
-        <p>© 16 Corner 2026. All rights reserved.</p>
-        <p>&nbsp;&nbsp;Designed and developed by Su Zhang</p>
+        <p>© 16 Corner 2025. All rights reserved.</p>
+        <p>Designed and developed by Su Zhang</p>
     </footer>
 
 <script>
