@@ -9,6 +9,11 @@
         margin: 10% 10% 0 10%;
         }
 
+        /* Prevent anchor jumps from being hidden under fixed navbar */
+        html {
+            scroll-padding-top: 90px;
+        }
+
           .header {
         text-align: center;
         padding: 30px 0 20px 0;
@@ -216,6 +221,10 @@
                 height: 30px;
                 box-shadow: 0 0 6px rgba(255,255,255,0.3);
             }
+
+            html {
+                scroll-padding-top: 70px;
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -232,6 +241,10 @@
                 width: 20px;
                 height: 20px;
                 box-shadow: 0 0 4px rgba(255,255,255,0.3);
+            }
+
+            html {
+                scroll-padding-top: 65px;
             }
         }   
         /*progress bar*/
@@ -330,7 +343,7 @@
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Northeast Facade Before and After Renovation</p>
         <img src="Project summary/Exterior Before After NE Facade.png" class="project-image">
 
-        <h2>Challenge </h2>
+        <h2 id="challenge">Challenge </h2>
         <h3>1.Funding Challenge</h3>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;16 Corner was financed through a combination of public and private sources. Initially, it received a $3.8 million forgivable loan from Omni CRA, a $1.76 million loan from a local bank, and $400,000 in equity. Additional funding included $812,000 from the Surtax Loan Program in 2022 and $585,000 from Development Inflation Adjustment Fund (DIAF) in 2023 issued by Miami-Dade County Public Housing and Community Development (PHCD).</p>
         <img src="Project summary/16 Corner Funding Summary.png" class="project-image">
