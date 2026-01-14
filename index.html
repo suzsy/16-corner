@@ -103,14 +103,16 @@
             background-color: transparent;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 0 20%;
+            padding: 120px 20% 60px 20%;
             z-index: 4;
             transform: translateY(100%);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
             opacity: 1;
-            padding-top: 120px;
+            min-height: 100vh;
+            height: auto;
+            overflow: visible;
         }
 
         .introduction h1 {
@@ -449,6 +451,24 @@
                 display: block;
             }
 
+            .historic {
+                height: 70vh;
+                min-height: 70vh;
+            }
+
+            .comparison-slider {
+                height: 70vh;
+            }
+
+            .comparison-slider .slider::before {
+                width: 30px;
+                height: 30px;
+            }
+
+            .comparison-slider .slider::after {
+                font-size: 12px;
+            }
+
         }
 
         @media screen and (max-width: 480px) {
@@ -553,6 +573,34 @@
             footer p {
                 font-size: 0.7em;
                 margin: 2px 0;
+            }
+
+            .historic {
+                height: 60vh;
+                min-height: 60vh;
+                padding: 20px;
+            }
+
+            .comparison-slider {
+                height: 60vh;
+            }
+
+            .comparison-slider .slider {
+                width: 6px;
+            }
+
+            .comparison-slider .slider::before {
+                width: 25px;
+                height: 25px;
+            }
+
+            .comparison-slider .slider::after {
+                font-size: 10px;
+            }
+
+            .comparison-slider .slider-text {
+                font-size: 10px;
+                bottom: -25px;
             }
         }
 
@@ -701,17 +749,19 @@
 
         .comparison-slider .current-img {
             z-index: 1;
+            object-fit: contain;
         }
 
         .comparison-slider .slider {
             position: absolute;
             z-index: 3;
             width: 8px;
-            height: 100%;
+            height: 100%; /* Default, will be adjusted by JavaScript to match image height */
             background-color: rgba(0, 0, 0, 0.8);
             left: 50%;
             transform: translateX(-50%);
             cursor: ew-resize;
+            top: 0;
         }
 
         .comparison-slider .slider::before {
@@ -808,8 +858,19 @@
     <section class="introduction">
         <h1>16 Corner</h1>
         <p>16 Corner is an affordable housing restoration project located in historic Overtown, Miami, Florida. It was developed by The Vagabond Group from 2018 to 2026.</p>
-        
         <div class="team-members">
+            <div class="team-section">
+                <h3>Impact Highlights</h3>
+                <p>• <strong>44 affordable homes preserved</strong> in a neighborhood where demolition would have reduced housing to 12 units</p>
+                <p>• <strong>Zero permanent resident displacement</strong> through phased construction and on-site temporary relocation</p>
+                <p>• <strong>Long-term affordability secured</strong> via a 30-year Affordable Housing Covenant on all units</p>
+                <p>• <strong>Legacy tenants protected</strong>, with average rents at 33% AMI and some as low as 19% AMI</p>
+                <p>• <strong>Improved living conditions</strong> through comprehensive building upgrades, soundproofing, and modernized interiors</p>
+                <p>• <strong>Community partnership embedded</strong>, with Mt. Zion CDC as an ownership partner supporting outreach and access</p>
+                <p>• <strong>Local economic impact generated</strong> by engaging local contractors and small businesses</p>
+                <p>• <strong>Infill preservation model demonstrated</strong>, maintaining neighborhood continuity and efficient use of existing infrastructure</p>
+                <p>• <strong>Policy lessons surfaced</strong> on funding timing, renovation realities, and the need for stronger support for small-scale infill affordable housing</p>
+            </div>
             <div class="team-section">
                 <h3>Partnership:</h3>
                 <p>Developer: The Vagabond Group</p>
@@ -963,7 +1024,70 @@
         // Comparison Slider
         const slider = document.querySelector('.comparison-slider .slider');
         const historicImg = document.querySelector('.comparison-slider .historic-img');
+        const currentImg = document.querySelector('.comparison-slider .current-img');
+        const comparisonSlider = document.querySelector('.comparison-slider');
         let isDragging = false;
+
+        // Function to adjust slider height and constrain current image to historic image frame
+        function adjustSliderHeight() {
+            if (historicImg && slider && comparisonSlider) {
+                // Wait for both images to load
+                const imagesLoaded = historicImg.complete && historicImg.naturalWidth > 0 && 
+                                    (!currentImg || (currentImg.complete && currentImg.naturalWidth > 0));
+                
+                if (imagesLoaded) {
+                    const containerRect = comparisonSlider.getBoundingClientRect();
+                    const containerWidth = containerRect.width;
+                    const containerHeight = containerRect.height;
+                    
+                    // Get natural image dimensions
+                    const imgNaturalWidth = historicImg.naturalWidth;
+                    const imgNaturalHeight = historicImg.naturalHeight;
+                    const imgAspectRatio = imgNaturalWidth / imgNaturalHeight;
+                    const containerAspectRatio = containerWidth / containerHeight;
+                    
+                    // Calculate actual rendered image dimensions with object-fit: contain
+                    let renderedWidth, renderedHeight, offsetTop, offsetLeft;
+                    
+                    if (containerAspectRatio > imgAspectRatio) {
+                        // Container is wider relative to image, height is the limiting factor
+                        renderedHeight = containerHeight;
+                        renderedWidth = containerHeight * imgAspectRatio;
+                        offsetTop = 0;
+                        offsetLeft = (containerWidth - renderedWidth) / 2;
+                    } else {
+                        // Image width is the limiting factor, width fills container
+                        renderedWidth = containerWidth;
+                        renderedHeight = containerWidth / imgAspectRatio;
+                        offsetTop = (containerHeight - renderedHeight) / 2;
+                        offsetLeft = 0;
+                    }
+                    
+                    // Set slider height and position to match rendered image
+                    slider.style.height = renderedHeight + 'px';
+                    slider.style.top = offsetTop + 'px';
+                    
+                    // Constrain current image to match historic image's rendered dimensions
+                    if (currentImg) {
+                        currentImg.style.width = renderedWidth + 'px';
+                        currentImg.style.height = renderedHeight + 'px';
+                        currentImg.style.top = offsetTop + 'px';
+                        currentImg.style.left = offsetLeft + 'px';
+                        currentImg.style.objectFit = 'contain'; // Use contain to fit within frame
+                    }
+                } else {
+                    // Images not loaded yet, wait for load events
+                    historicImg.addEventListener('load', adjustSliderHeight, { once: true });
+                    if (currentImg) {
+                        currentImg.addEventListener('load', adjustSliderHeight, { once: true });
+                    }
+                }
+            }
+        }
+
+        // Adjust slider height on load and resize
+        adjustSliderHeight();
+        window.addEventListener('resize', adjustSliderHeight);
 
         slider.addEventListener('mousedown', (e) => {
             isDragging = true;
