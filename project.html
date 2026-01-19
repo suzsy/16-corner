@@ -182,11 +182,27 @@
         }
 
         /* Center captions that describe images */
-        .project-section p.caption {
+        p.caption {
             text-align: center;
-            margin: 10px 0;
+            margin: 8px 0 2px;
+            font-family: sans-serif;
+            font-weight: 400;
             font-size: 0.9em;
             color: #444;
+        }
+
+        /* Reduce gap right after the header rendering */
+        .header p.caption {
+            margin-bottom: 0;
+        }
+
+        .header + .project-section,
+        .header .project-section {
+            padding-top: 10px;
+        }
+
+        .header .project-section h2:first-of-type {
+            margin-top: 6px;
         }
 
         .project-image {
@@ -313,6 +329,7 @@
     <div class="header">
         <h1>Project Summary</h1>
         <img src="Image/render.png" class="project-image">
+        <p class="caption">16 Corner Rendering</p>
         
     <div class="project-section">
         <h2>Background</h2>
@@ -320,11 +337,11 @@
         <p>&nbsp;&nbsp;&nbsp;&nbsp; In 2018, the City of Miami designated the five buildings as unsafe structures, prompting a critical decision between demolition and preservation. Demolition would have resulted in resident displacement and a reduction in available housing units. Under the site’s T3-O zoning designation in the Miami 21 Master Plan, allowable density would have been limited to approximately 12 units, further constraining the housing supply in a neighborhood already experiencing a shortage.</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; The Omni Community Redevelopment Agency ("Omni CRA") engaged Avra Jain, founder of The Vagabond Group, to lead the preservation of the existing structures. The project aimed to retain original architectural features, preserve housing supply, retrofit the buildings for safety and resilience, and restore healthy housing for current and future residents. </p>
 
-        <h2>Public-Private Partnership</h2>
+        <h2 id="public-private-partnership">Public-Private Partnership</h2>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; 16 Corner was realized through a collaboration between The Vagabond Group (“Vagabond”), the Omni CRA, Mt. Zion Community Development Corporation (“Zion”), and Miami-Dade County Public Housing and Community Development (“PHCD”), which provided supplemental funding. The Omni CRA provided a $3.8 million forgivable loan—$1.8 million for acquisition and $2 million for construction—with a 30-year Affordable Housing Covenant placed on all units, ensuring long-term affordability. The PHCD provided supplemental funding through the Surtax Loan Program and the Development Inflation Adjustment Fund (“DIAF”) to address funding shortfalls. </p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; Zion joined as a community-based partner, receiving a 7.5% ownership interest in the project. Their role was to help with community outreach and to connect local residents with any vacancy opportunities. The partnership exemplifies a community-driven model that leverages both public and private investment to support equitable development and strengthen local engagement. </p>
         
-        <h2>Location</h2>
+        <h2 id="location">Location</h2>
         <img src="Project summary/16 Corner Location Map.png" class="project-image">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;The project is in Overtown within the Omni CRA district. It spans three parcels along the north-south corridor of Northwest 1st Place, adjacent to one of the more underserved areas in the district.</p>
 
