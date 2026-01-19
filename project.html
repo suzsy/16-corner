@@ -181,12 +181,28 @@
             text-align: left;
         }
 
+        /* Center captions that describe images */
+        .project-section p.caption {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #444;
+        }
+
         .project-image {
             width: 100%;
             height: auto;
             border-radius: 8px;
             margin-top: 0;
             margin: 0;          
+        }
+
+        /* Smaller images (don’t take over the page) */
+        .project-image.small-image {
+            width: 70%;
+            max-width: 650px;
+            display: block;
+            margin: 10px auto;
         }
 
         .project-link {
@@ -223,6 +239,11 @@
                 box-shadow: 0 0 6px rgba(255,255,255,0.3);
             }
 
+            .project-image.small-image {
+                width: 90%;
+                max-width: 90%;
+            }
+
             html {
                 scroll-padding-top: 70px;
             }
@@ -242,6 +263,11 @@
                 width: 20px;
                 height: 20px;
                 box-shadow: 0 0 4px rgba(255,255,255,0.3);
+            }
+
+            .project-image.small-image {
+                width: 100%;
+                max-width: 100%;
             }
 
             html {
@@ -306,7 +332,7 @@
         <img src="Project summary/16 Corner Aerial Map.png" class="project-image">
         <p>&nbsp;&nbsp;&nbsp;&nbsp; The development comprises five two-story, garden-style apartment buildings, covering a total land area of 29,400 square feet with a total building footprint of 20,312 square feet. It includes 44 units: 12 studios, 20 one-bedrooms, 6 two-bedrooms, and 6 three-bedrooms. Renovation began in late 2018 and is scheduled for completion in 2025.</p>
 
-        <h2>Significance</h2>
+        <h2 id="significance">Significance</h2>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; The Omni CRA-funded 16 Corner advances the CRA’s mandate to support local residents. Located in historic Overtown, the project responds to the area’s long-standing impacts from major infrastructure investments by expanding the supply of quality housing while preserving neighborhood character. </p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; Most of the original buildings required extensive upgrades. Vagabond oversaw the restoration of architectural features and the renovation of both interiors and exteriors, while also prioritizing local economic impact by engaging local contractors and small businesses. Renovations were completed one building at a time to avoid displacing residents. Tenants were temporarily relocated to vacant units within the complex with the opportunity to return to their original homes upon completion. </p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; As part of the initiative, legacy tenants were retained under existing lease terms at their original rent levels. The average rent for legacy tenants is $837 per unit per month, corresponding to an average affordability level of 33% AMI. </p>
@@ -316,32 +342,34 @@
         <h2>Above and Beyond</h2>
         <h3>Thoughtful Design</h3>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Renovations were tailored to meet residents’ needs. Kitchens now feature custom-built, floor-to-ceiling cabinets for added storage, deep sinks, and tiled backsplashes. Each bedroom includes built-out closets with mirrored doors. An on-site laundry room—previously abandoned—will be fully restored by the end of construction. </p>  
-        <img src="Project summary/window.jpg" class="project-image">
-        
+        <img src="Project summary/window.jpg" class="project-image small-image">
+        <p class="caption">Bedroom with Great Natural Light</p>
+
         <h3>Built for Longevity</h3>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;To enhance durability, comfort, and soundproofing, upgrades include resilient channels, whisper mats beneath flooring, and additional mold-resist wool insulation between walls and in ceilings.</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Ceiling fans were installed in addition to energy-efficient air conditioning systems to provide flexible climate control. All impact glass windows were replaced with screened models to allow for natural ventilation when desired.</p>
-        <img src="Project summary/Sustainability.png" class="project-image">
+        <img src="Project summary/Sustainability.png" class="project-image small-image">
+        <p class="caption">Palm Tress Planted in the Courtyard</p>
         
         <h3>Sustainability</h3>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Kitchens feature track lighting to reduce energy consumption and improve overall functionality. Additionally, four palm trees now stand in the courtyard between buildings 1540 and 1550, creating welcoming shade and green space for residents. Additional landscaping enhancements are planned for the remaining buildings as the project progresses.</p>
         
         <h2>Before and After Pictures</h2>
         <h3>Interior</h3>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;Kitchen before renovation</p>
         <img src="Project summary/Kitchen before Renovation.png" class="project-image">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;Kitchen during renovation</p>
+        <p class="caption">Kitchen Before Renovation</p>
         <img src="Project summary/Kitchen During Construction.png" class="project-image">
         <img src="Project summary/Kitchen During Construction - Wall.png" class="project-image">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;Kitchen after renovation</p>
+        <p class="caption">Kitchen During Renovation</p>
         <img src="Project summary/after.png" class="project-image"> 
+        <p class="caption">Kitchen After Renovation</p>
 
         <h3>Exterior</h3>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;North Facade Before and After Renovation</p>
         <img src="Project summary/Exterior Before After North Facade.png" class="project-image">
         <img src="Project summary/Exterior Before After North Facade 2.png" class="project-image">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;Northeast Facade Before and After Renovation</p>
+        <p class="caption">North Facade Before and After Renovation</p>
         <img src="Project summary/Exterior Before After NE Facade.png" class="project-image">
+        <p class="caption">Northeast Facade Before and After Renovation</p>
 
         <h2 id="challenge">Challenge </h2>
         <h3>1.Funding Challenge</h3>
@@ -371,7 +399,8 @@
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Construction sites must always guard against theft of materials – however, absorbing that expense is much more difficult for a small project. Several theft incidents occurred during construction. Plumbing and electrical infrastructure comprised of copper and aluminum were stolen on multiple occasions. Additionally, workers’ tools and appliances were taken. To avoid further unexpected costs and delays in replacing materials, the Omni CRA was able to provide a security company at their expense. </p>  
 
         <h3>7.infrastructure Challenges - "Silent Killer"</h3>
-        <img src="Project summary/sewer Before.png" class="project-image">
+        <img src="Project summary/sewer Before.png" class="project-image small-image">
+        <p class="caption">Sewer Snake Condition Before Improvement</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;When connecting the building’s plumbing to the County sewer system, it was discovered that the property had never been formally connected to the County sewer line. The development team was initially advised to connect to the existing infrastructure. However, upon attempting the connection, the plumber identified a broken sewer snake lodged within the sewer line, making connection impossible. 
         The County indicated that an infrastructure upgrade would not be scheduled until 3 years later. Both the General Contractor and the Omni CRA contacted the Water and Sewer department to seek resolution but did not receive a response. As a result, the project experienced an approximately two-month delay while the issue remained unresolved. It was ultimately resolved following escalation to County leadership.
         This experience highlights the challenges developers may face when unforeseen infrastructure conditions arise, particularly for smaller or emerging developers who may lack the relationships or resources to expedite interagency coordination. </p>   
