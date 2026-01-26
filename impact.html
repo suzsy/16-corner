@@ -122,6 +122,17 @@
         color: rgb(239, 183, 183);
         }
 
+        /* Desktop-only: make nav feel less cramped on wide screens */
+        @media screen and (min-width: 1024px) {
+            .nav-links {
+                max-width: 1100px;
+                gap: 32px;
+            }
+            .nav-button {
+                padding: 12px 24px;
+            }
+        }
+
         .cursor-halo {
             position: fixed;
             width: 50px;
