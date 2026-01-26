@@ -6,6 +6,11 @@
     <title>Resources</title>
 </head>
 <style>
+    :root {
+        /* Wired-like gutters: small on phones, larger on desktop */
+        --page-gutter: clamp(12px, 4vw, 48px);
+    }
+
     html, body {
         margin: 0;
         padding: 0;
@@ -29,7 +34,7 @@
     body {
         background-color:#EFB7B7;
         margin: 0;
-        padding: 90px 6% 0 6%;
+        padding: 90px var(--page-gutter) 0 var(--page-gutter);
         position: relative;
         cursor: none;
     }
@@ -227,15 +232,15 @@
             }
 
             body {
-                padding: 70px 3% 0 3%;
+                padding: 70px var(--page-gutter) 0 var(--page-gutter);
             }
 
             .header {
-                padding: 12px;
+                padding: 12px 0;
             }
 
             .resources-content {
-                padding: 12px;
+                padding: 12px 0;
             }
         }
 
@@ -256,15 +261,15 @@
             }
             
             body {
-                padding: 65px 8px 0 8px;
+                padding: 65px var(--page-gutter) 0 var(--page-gutter);
             }
 
             .header {
-                padding: 10px;
+                padding: 10px 0;
             }
 
             .resources-content {
-                padding: 10px;
+                padding: 10px 0;
             }
         }   
         /*progress bar*/

@@ -10,6 +10,11 @@
             padding: 0;
         }
 
+        :root {
+            /* Wired-like gutters: small on phones, larger on desktop */
+            --page-gutter: clamp(12px, 4vw, 48px);
+        }
+
         /* Prevent anchor jumps from being hidden under fixed navbar */
         html {
             scroll-padding-top: 90px;
@@ -36,7 +41,7 @@
             background-color: #ffffff;
             margin: 0;
             /* create page gutters without using body margins (fixes cursor edge issues) */
-            padding: 90px 6% 0 6%;
+            padding: 90px var(--page-gutter) 0 var(--page-gutter);
             position: relative;
             cursor: none;
         }
@@ -290,7 +295,12 @@
             }
 
             body {
-                padding: 70px 3% 0 3%;
+                padding: 70px var(--page-gutter) 0 var(--page-gutter);
+            }
+
+            .project-section {
+                padding-left: 0;
+                padding-right: 0;
             }
         }
 
@@ -320,7 +330,12 @@
             }
 
             body {
-                padding: 65px 8px 0 8px;
+                padding: 65px var(--page-gutter) 0 var(--page-gutter);
+            }
+
+            .project-section {
+                padding-left: 0;
+                padding-right: 0;
             }
         }   
         /*progress bar*/
