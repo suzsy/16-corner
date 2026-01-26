@@ -705,7 +705,8 @@
             gap: 20px;
             max-width: 800px;
             margin: 0 auto;
-            flex-wrap: wrap;
+            /* match other pages: wrap only on small screens (media queries) */
+            flex-wrap: nowrap;
         }
 
         .nav-button {
@@ -717,11 +718,41 @@
             border-radius: 10px;
             position: relative;
             transition: all 0.3s;
-            white-space: nowrap;
         }
         
         .nav-button:hover {
             color: rgb(239, 183, 183);
+        }
+
+        /* Navbar mobile behavior (match history/impact/project/resources) */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 5px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+                justify-content: center;
+                max-width: 100%;
+            }
+
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .nav-links {
+                gap: 5px;
+            }
+
+            .nav-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
         }
 
         /* Add smooth scroll behavior */
