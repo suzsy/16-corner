@@ -393,24 +393,6 @@
 
         /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .navbar {
-                padding: 5px 0;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 10px;
-                padding: 0 10px;
-                justify-content: center;
-                max-width: 100%;
-            }
-
-            .nav-button {
-                padding: 8px 15px;
-                font-size: 0.9em;
-                white-space: nowrap;
-            }
-
             .cursor-halo {
                 width: 30px;
                 height: 30px;
@@ -517,19 +499,6 @@
         }
 
         @media screen and (max-width: 480px) {
-            .nav-links {
-                gap: 5px;
-                padding: 0 5px;
-                flex-wrap: wrap;
-                max-width: 100%;
-                justify-content: center;
-            }
-
-            .nav-button {
-                padding: 6px 12px;
-                font-size: 0.8em;
-            }
-
             .cursor-halo {
                 width: 20px;
                 height: 20px;
@@ -724,14 +693,14 @@
             color: rgb(239, 183, 183);
         }
 
-        /* Navbar mobile behavior (match history/impact/project/resources) */
+        /* Navbar mobile behavior (ONE line, no sideways scroll) */
         @media screen and (max-width: 768px) {
             .navbar {
                 padding: 5px 0;
             }
 
             .nav-links {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 gap: 10px;
                 padding: 0 10px;
                 justify-content: center;
@@ -741,17 +710,22 @@
             .nav-button {
                 padding: 8px 15px;
                 font-size: 0.9em;
+                white-space: nowrap;
             }
         }
 
         @media screen and (max-width: 480px) {
             .nav-links {
+                flex-wrap: nowrap;
                 gap: 5px;
+                padding: 0 8px;
+                justify-content: center;
             }
 
             .nav-button {
-                padding: 6px 12px;
+                padding: 6px 10px;
                 font-size: 0.8em;
+                white-space: nowrap;
             }
         }
 
