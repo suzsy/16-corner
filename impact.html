@@ -283,6 +283,16 @@
             .awards-content {
                 padding: 12px 0;
             }
+
+            /* Make award images larger on smaller screens */
+            .award-image {
+                width: 90%;
+                max-width: 560px;
+            }
+            .award-image.award-image-large {
+                width: 100%;
+                max-width: 640px;
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -311,6 +321,13 @@
 
             .awards-content {
                 padding: 10px 0;
+            }
+
+            /* Full-width award images on phones */
+            .award-image,
+            .award-image.award-image-large {
+                width: 100%;
+                max-width: 100%;
             }
         }  
         /*progress bar*/
