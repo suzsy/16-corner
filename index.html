@@ -199,22 +199,25 @@
         .team-members.project-layout .team-section.project-text h3 {
             margin: 15px 0;
             font-size: 1.1em; /* match .team-section h3 sizing */
+            text-align: left;
         }
 
         .team-members.project-layout .team-section.project-text p {
             margin: 6px 0;
-            padding-left: 0;
+            padding: 0;
             line-height: 2; /* match .team-members line-height */
         }
 
-        /* Indent only the narrative intro paragraphs (avoid shifting bullets) */
+        /* Center only the narrative intro paragraphs */
         .team-members.project-layout .team-section.project-text p.intro-paragraph {
-            text-indent: 1.5rem;
+            text-align: center;
+            text-indent: 0;
         }
 
         /* Remove extra spacing between Impact Highlights bullets */
         .team-members.project-layout .team-section.project-text p.impact-bullet {
             margin: 0;
+            text-align: left;
         }
 
         .inline-link {
@@ -550,7 +553,6 @@
 
             .introduction p {
                 font-size: 1em;
-                padding: 0 10%;
             }
 
             .introduction {
