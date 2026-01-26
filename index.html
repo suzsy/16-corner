@@ -401,6 +401,18 @@
             }
         }
 
+        /* Fallback: force-hide custom cursor on small screens */
+        @media screen and (max-width: 768px) {
+            .cursor-halo {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+            }
+            body, * {
+                cursor: auto !important;
+            }
+        }
+
         /* Responsive Design */
         @media screen and (max-width: 768px) {
             .cursor-halo {
