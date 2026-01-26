@@ -296,6 +296,16 @@
             background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
         }
 
+        /* Hide custom cursor on touch devices (prevents halo stuck at top-left) */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor-halo {
+                display: none;
+            }
+            body, * {
+                cursor: auto !important;
+            }
+        }
+
         /*adjust to different screen*/
         @media screen and (max-width: 768px) {
             .container {
