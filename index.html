@@ -1064,6 +1064,18 @@
         const introTeamMembers = introSection ? introSection.querySelector('.team-members') : null;
         const contactSection = document.querySelector('section.contact');
         const contactBox = contactSection ? contactSection.querySelector('.contact-box') : null;
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        // Keep effects on mobile, but make them lighter to avoid lag.
+        const enableHeavyScrollEffects = !prefersReducedMotion;
+        const bgSteps = isTouchDevice ? 14 : 255; // reduce full-page repaints on phones
+        let lastBgStep = -1;
+        const activatedSections = new Array(sections.length).fill(false);
+
+        const introIndex = introSection ? sections.indexOf(introSection) : -1;
+        const contactIndex = contactSection ? sections.indexOf(contactSection) : -1;
 
         let cachedWindowHeight = window.innerHeight;
         let cachedSectionTops = sections.map((s) => s.offsetTop);
@@ -1088,11 +1100,26 @@
             const windowHeight = cachedWindowHeight;
             const documentHeight = document.documentElement.scrollHeight;
 
+            // Lightweight updates (always enabled)
             // Footer visibility near bottom
             if (footer) {
                 if (scrollPosition + windowHeight >= documentHeight - 50) footer.classList.add('visible');
                 else footer.classList.remove('visible');
             }
+
+            // Back-to-top visibility near contact section
+            if (backToTopButton && cachedContactTop) {
+                if (scrollPosition > cachedContactTop - windowHeight) backToTopButton.classList.add('visible');
+                else backToTopButton.classList.remove('visible');
+            }
+
+            // Scroll indicator fade
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = scrollPosition > 100 ? '0' : '0.8';
+            }
+
+            // If heavy effects are disabled (reduced motion), keep scrolling responsive.
+            if (!enableHeavyScrollEffects) return;
 
             // Opening title state + fade/parallax
             if (openingTitle) {
@@ -1106,28 +1133,33 @@
 
             // Background color transition
             const scrollPercentage = Math.min(scrollPosition / (windowHeight * 0.5), 1);
-            const r = (255 * scrollPercentage) | 0;
-            const g = (255 * scrollPercentage) | 0;
-            const b = (255 * scrollPercentage) | 0;
-            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            // On phones, only update the background color in coarse "steps" to reduce repaints.
+            const step = Math.round(scrollPercentage * bgSteps);
+            if (step !== lastBgStep) {
+                lastBgStep = step;
+                const c = Math.round((step / bgSteps) * 255);
+                document.body.style.backgroundColor = `rgb(${c}, ${c}, ${c})`;
+            }
             if (colorTransition) colorTransition.style.opacity = String(1 - scrollPercentage);
 
             // Parallax train
             if (trainBg) trainBg.style.transform = `translate3d(0, ${scrollPosition * 0.3}px, 0)`;
 
-            // Section transitions (use cached tops; avoid layout reads on scroll)
+            // Section transitions (apply once per section; avoid repeated writes)
             for (let i = 0; i < sections.length; i++) {
+                if (activatedSections[i]) continue;
                 const section = sections[i];
                 const scrollTrigger = cachedSectionTops[i] - windowHeight * 0.7;
                 if (scrollPosition > scrollTrigger) {
                     section.style.transform = 'translateY(0)';
                     section.style.opacity = '1';
+                    activatedSections[i] = true;
                 }
             }
 
             // Animate intro content (once it has entered)
-            if (introSection) {
-                const introTrigger = (introSection.offsetTop) - windowHeight * 0.7;
+            if (introSection && introIndex >= 0) {
+                const introTrigger = cachedSectionTops[introIndex] - windowHeight * 0.7;
                 if (scrollPosition > introTrigger) {
                     if (introH1) introH1.style.transform = 'translateX(0)';
                     if (introP) {
@@ -1149,11 +1181,6 @@
                     contactBox.style.transform = 'translateY(0)';
                 }
             }
-
-            // Scroll indicator fade
-            if (scrollIndicator) {
-                scrollIndicator.style.opacity = scrollPosition > 100 ? '0' : '0.8';
-            }
         }
 
         window.addEventListener(
@@ -1167,6 +1194,27 @@
             },
             { passive: true }
         );
+
+        // If effects are disabled (reduced motion), reveal sections immediately.
+        if (!enableHeavyScrollEffects) {
+            sections.forEach((section) => {
+                section.style.transform = 'translateY(0)';
+                section.style.opacity = '1';
+            });
+            if (introH1) introH1.style.transform = 'translateX(0)';
+            if (introP) {
+                introP.style.opacity = '1';
+                introP.style.transform = 'translateY(0)';
+            }
+            if (introTeamMembers) {
+                introTeamMembers.style.opacity = '1';
+                introTeamMembers.style.transform = 'translateY(0)';
+            }
+            if (contactBox) {
+                contactBox.style.opacity = '1';
+                contactBox.style.transform = 'translateY(0)';
+            }
+        }
 
         // Comparison Slider
         const slider = document.querySelector('.comparison-slider .slider');
@@ -1298,22 +1346,6 @@
             comparisonSlider.addEventListener('touchend', () => { isDragging = false; });
             comparisonSlider.addEventListener('touchcancel', () => { isDragging = false; });
         }
-
-        // Back to Top functionality
-        const backToTopButton = document.querySelector('.back-to-top');
-
-        window.addEventListener('scroll', function() {
-            const contactSection = document.querySelector('.contact');
-            const contactTop = contactSection.offsetTop;
-            const windowHeight = window.innerHeight;
-            
-            // Show button when user reaches contact section
-            if (window.scrollY > contactTop - windowHeight) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
 
         function scrollToTop() {
             window.scrollTo({
