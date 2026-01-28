@@ -42,6 +42,20 @@
             transition: opacity 0.3s ease;
         }
 
+        /* Mobile optimization: mimic bg-color fade using an overlay (no full-page repaints). */
+        .bg-white-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            z-index: -2;
+            pointer-events: none;
+            will-change: opacity;
+        }
+
         section {
             width: 100%;
             height: 100vh;
@@ -951,6 +965,7 @@
 </head>
 <body>
     <div class="cursor-halo"></div>
+    <div class="bg-white-overlay"></div>
     <div class="color-transition"></div>
     
     <!-- Add this after the cursor-halo div -->
@@ -1070,9 +1085,12 @@
         const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
         // Keep effects on mobile, but make them lighter to avoid lag.
         const enableHeavyScrollEffects = !prefersReducedMotion;
-        const bgSteps = isTouchDevice ? 14 : 255; // reduce full-page repaints on phones
+        const bgOverlay = document.querySelector('.bg-white-overlay');
+        // Keep the original effect on desktop; on phones use overlay opacity (same look, faster).
+        const bgSteps = isTouchDevice ? 14 : 255; // used only for desktop bg color
         let lastBgStep = -1;
         const activatedSections = new Array(sections.length).fill(false);
+        let lastParallaxTime = 0;
 
         const introIndex = introSection ? sections.indexOf(introSection) : -1;
         const contactIndex = contactSection ? sections.indexOf(contactSection) : -1;
@@ -1133,17 +1151,33 @@
 
             // Background color transition
             const scrollPercentage = Math.min(scrollPosition / (windowHeight * 0.5), 1);
-            // On phones, only update the background color in coarse "steps" to reduce repaints.
-            const step = Math.round(scrollPercentage * bgSteps);
-            if (step !== lastBgStep) {
-                lastBgStep = step;
-                const c = Math.round((step / bgSteps) * 255);
-                document.body.style.backgroundColor = `rgb(${c}, ${c}, ${c})`;
+            if (isTouchDevice && bgOverlay) {
+                // Mobile: same visual fade, but avoid full-page repaint on every frame.
+                bgOverlay.style.opacity = String(scrollPercentage);
+            } else {
+                // Desktop: original look (body background color updates)
+                const step = Math.round(scrollPercentage * bgSteps);
+                if (step !== lastBgStep) {
+                    lastBgStep = step;
+                    const c = Math.round((step / bgSteps) * 255);
+                    document.body.style.backgroundColor = `rgb(${c}, ${c}, ${c})`;
+                }
             }
             if (colorTransition) colorTransition.style.opacity = String(1 - scrollPercentage);
 
             // Parallax train
-            if (trainBg) trainBg.style.transform = `translate3d(0, ${scrollPosition * 0.3}px, 0)`;
+            if (trainBg) {
+                const y = scrollPosition * 0.3;
+                if (isTouchDevice) {
+                    const now = performance.now();
+                    if (now - lastParallaxTime > 33) {
+                        lastParallaxTime = now;
+                        trainBg.style.transform = `translate3d(0, ${y}px, 0)`;
+                    }
+                } else {
+                    trainBg.style.transform = `translate3d(0, ${y}px, 0)`;
+                }
+            }
 
             // Section transitions (apply once per section; avoid repeated writes)
             for (let i = 0; i < sections.length; i++) {
