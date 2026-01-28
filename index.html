@@ -1112,6 +1112,8 @@
         let lastBgStep = -1;
         const activatedSections = new Array(sections.length).fill(false);
         let lastParallaxTime = 0;
+        // Mobile: trigger animations earlier so light scroll feels responsive
+        const sectionTriggerFactor = isTouchDevice ? 0.9 : 0.7;
 
         const introIndex = introSection ? sections.indexOf(introSection) : -1;
         const contactIndex = contactSection ? sections.indexOf(contactSection) : -1;
@@ -1204,7 +1206,7 @@
             for (let i = 0; i < sections.length; i++) {
                 if (activatedSections[i]) continue;
                 const section = sections[i];
-                const scrollTrigger = cachedSectionTops[i] - windowHeight * 0.7;
+                const scrollTrigger = cachedSectionTops[i] - windowHeight * sectionTriggerFactor;
                 if (scrollPosition > scrollTrigger) {
                     section.style.transform = 'translateY(0)';
                     section.style.opacity = '1';
@@ -1214,7 +1216,7 @@
 
             // Animate intro content (once it has entered)
             if (introSection && introIndex >= 0) {
-                const introTrigger = cachedSectionTops[introIndex] - windowHeight * 0.7;
+                const introTrigger = cachedSectionTops[introIndex] - windowHeight * sectionTriggerFactor;
                 if (scrollPosition > introTrigger) {
                     if (introH1) introH1.style.transform = 'translateX(0)';
                     if (introP) {
@@ -1230,7 +1232,7 @@
 
             // Animate contact box (once it has entered)
             if (contactBox && contactSection) {
-                const contactTrigger = cachedContactTop - windowHeight * 0.7;
+                const contactTrigger = cachedContactTop - windowHeight * sectionTriggerFactor;
                 if (scrollPosition > contactTrigger) {
                     contactBox.style.opacity = '1';
                     contactBox.style.transform = 'translateY(0)';
