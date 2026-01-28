@@ -103,7 +103,7 @@
             top: 20px;
             left: 80%;
             transform: translateX(-50%);
-            opacity: 0;
+            opacity: 1;
         }
 
         .train-bg {
@@ -1107,13 +1107,10 @@
         // Keep effects on mobile, but make them lighter to avoid lag.
         const enableHeavyScrollEffects = !prefersReducedMotion;
         const bgOverlay = document.querySelector('.bg-white-overlay');
-        // Keep the original effect on desktop; on phones use overlay opacity (same look, faster).
-        const bgSteps = isTouchDevice ? 14 : 255; // used only for desktop bg color
-        let lastBgStep = -1;
         const activatedSections = new Array(sections.length).fill(false);
         let lastParallaxTime = 0;
         // Mobile: trigger animations earlier so light scroll feels responsive
-        const sectionTriggerFactor = isTouchDevice ? 0.9 : 0.7;
+        const sectionTriggerFactor = isTouchDevice ? 1.0 : 0.7;
 
         const introIndex = introSection ? sections.indexOf(introSection) : -1;
         const contactIndex = contactSection ? sections.indexOf(contactSection) : -1;
@@ -1162,14 +1159,10 @@
             // If heavy effects are disabled (reduced motion), keep scrolling responsive.
             if (!enableHeavyScrollEffects) return;
 
-            // Opening title state + fade/parallax
+            // Opening title state (keep original desktop behavior via CSS transitions)
             if (openingTitle) {
                 if (scrollPosition > windowHeight * 0.2) openingTitle.classList.add('scrolled');
                 else openingTitle.classList.remove('scrolled');
-
-                openingTitle.style.opacity = String(Math.max(0, 1 - scrollPosition / (windowHeight * 0.5)));
-                // Use translate3d for smoother GPU compositing on mobile
-                openingTitle.style.transform = `translate3d(0, ${scrollPosition * 0.2}px, 0)`;
             }
 
             // Background color transition
@@ -1178,13 +1171,9 @@
                 // Mobile: same visual fade, but avoid full-page repaint on every frame.
                 bgOverlay.style.opacity = String(scrollPercentage);
             } else {
-                // Desktop: original look (body background color updates)
-                const step = Math.round(scrollPercentage * bgSteps);
-                if (step !== lastBgStep) {
-                    lastBgStep = step;
-                    const c = Math.round((step / bgSteps) * 255);
-                    document.body.style.backgroundColor = `rgb(${c}, ${c}, ${c})`;
-                }
+                // Desktop: original look (continuous body background color updates)
+                const c = Math.round(scrollPercentage * 255);
+                document.body.style.backgroundColor = `rgb(${c}, ${c}, ${c})`;
             }
             if (colorTransition) colorTransition.style.opacity = String(1 - scrollPercentage);
 
@@ -1251,6 +1240,18 @@
             },
             { passive: true }
         );
+
+        // Initialize cached layout + initial animation state (prevents "scroll twice" feeling).
+        recalcScrollLayout();
+        window.requestAnimationFrame(() => {
+            latestScrollY = window.scrollY;
+            runScrollAnimations();
+        });
+        window.addEventListener('load', () => {
+            recalcScrollLayout();
+            latestScrollY = window.scrollY;
+            window.requestAnimationFrame(runScrollAnimations);
+        });
 
         // If effects are disabled (reduced motion), reveal sections immediately.
         if (!enableHeavyScrollEffects) {
@@ -1374,9 +1375,10 @@
                 activePointerId = null;
             };
 
-            // Allow dragging from the handle OR anywhere on the slider area
+            // Desktop: allow dragging from the handle OR anywhere on the slider area
+            // Touch devices: only start drag from the handle (so vertical scrolling stays natural)
             slider.addEventListener('pointerdown', startDrag);
-            comparisonSlider.addEventListener('pointerdown', startDrag);
+            if (!isTouchDevice) comparisonSlider.addEventListener('pointerdown', startDrag);
             comparisonSlider.addEventListener('pointermove', moveDrag);
             comparisonSlider.addEventListener('pointerup', endDrag);
             comparisonSlider.addEventListener('pointercancel', endDrag);
