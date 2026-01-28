@@ -1051,97 +1051,122 @@
         cursorHalo.classList.remove('active');
     });
 
-        // Scroll animations
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
+        // Scroll animations (optimized for mobile: cache DOM + rAF throttling)
+        const footer = document.querySelector('footer');
+        const openingTitle = document.querySelector('.opening h1');
+        const colorTransition = document.querySelector('.color-transition');
+        const trainBg = document.querySelector('.train-bg');
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        const sections = Array.from(document.querySelectorAll('section'));
+        const introSection = document.querySelector('section.introduction');
+        const introH1 = introSection ? introSection.querySelector('h1') : null;
+        const introP = introSection ? introSection.querySelector('p') : null;
+        const introTeamMembers = introSection ? introSection.querySelector('.team-members') : null;
+        const contactSection = document.querySelector('section.contact');
+        const contactBox = contactSection ? contactSection.querySelector('.contact-box') : null;
+
+        let cachedWindowHeight = window.innerHeight;
+        let cachedSectionTops = sections.map((s) => s.offsetTop);
+        let cachedContactTop = contactSection ? contactSection.offsetTop : 0;
+
+        function recalcScrollLayout() {
+            cachedWindowHeight = window.innerHeight;
+            cachedSectionTops = sections.map((s) => s.offsetTop);
+            cachedContactTop = contactSection ? contactSection.offsetTop : 0;
+        }
+
+        window.addEventListener('resize', recalcScrollLayout);
+        window.addEventListener('load', recalcScrollLayout);
+
+        let latestScrollY = window.scrollY;
+        let ticking = false;
+
+        function runScrollAnimations() {
+            ticking = false;
+
+            const scrollPosition = latestScrollY;
+            const windowHeight = cachedWindowHeight;
             const documentHeight = document.documentElement.scrollHeight;
-            const footer = document.querySelector('footer');
-            const openingTitle = document.querySelector('.opening h1');
 
-            // Show footer only when near bottom of page
-            if (scrollPosition + windowHeight >= documentHeight - 50) {
-                footer.classList.add('visible');
-            } else {
-                footer.classList.remove('visible');
+            // Footer visibility near bottom
+            if (footer) {
+                if (scrollPosition + windowHeight >= documentHeight - 50) footer.classList.add('visible');
+                else footer.classList.remove('visible');
             }
 
-            // Title transition to top right and fade out, then back to center
-            if (scrollPosition > windowHeight * 0.2) {
-                openingTitle.classList.add('scrolled');
-            } else {
-                openingTitle.classList.remove('scrolled');
-                openingTitle.style.transform = 'translate(-50%, -50%)';
-                openingTitle.style.top = '50%';
-                openingTitle.style.left = '50%';
-                openingTitle.style.opacity = '1';
+            // Opening title state + fade/parallax
+            if (openingTitle) {
+                if (scrollPosition > windowHeight * 0.2) openingTitle.classList.add('scrolled');
+                else openingTitle.classList.remove('scrolled');
+
+                openingTitle.style.opacity = String(Math.max(0, 1 - scrollPosition / (windowHeight * 0.5)));
+                // Use translate3d for smoother GPU compositing on mobile
+                openingTitle.style.transform = `translate3d(0, ${scrollPosition * 0.2}px, 0)`;
             }
 
-            const maxScroll = document.documentElement.scrollHeight - windowHeight;
+            // Background color transition
             const scrollPercentage = Math.min(scrollPosition / (windowHeight * 0.5), 1);
+            const r = (255 * scrollPercentage) | 0;
+            const g = (255 * scrollPercentage) | 0;
+            const b = (255 * scrollPercentage) | 0;
+            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            if (colorTransition) colorTransition.style.opacity = String(1 - scrollPercentage);
 
-            // Update background color based on scroll position
-            const body = document.body;
-            const r = Math.floor(255 * scrollPercentage);
-            const g = Math.floor(255 * scrollPercentage);
-            const b = Math.floor(255 * scrollPercentage);
-            body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            // Parallax train
+            if (trainBg) trainBg.style.transform = `translate3d(0, ${scrollPosition * 0.3}px, 0)`;
 
-            // Update color transition gradient opacity
-            const colorTransition = document.querySelector('.color-transition');
-            colorTransition.style.opacity = 1 - scrollPercentage;
-
-            // Parallax effect for train
-            const trainBg = document.querySelector('.train-bg');
-            trainBg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
-
-            // Opening section title fade
-            openingTitle.style.opacity = Math.max(0, 1 - scrollPosition / (windowHeight * 0.5));
-            openingTitle.style.transform = `translateY(${scrollPosition * 0.2}px)`;
-
-            // Section transitions
-            const sections = document.querySelectorAll('section');
-            sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                const scrollTrigger = sectionTop - windowHeight * 0.7;
-
+            // Section transitions (use cached tops; avoid layout reads on scroll)
+            for (let i = 0; i < sections.length; i++) {
+                const section = sections[i];
+                const scrollTrigger = cachedSectionTops[i] - windowHeight * 0.7;
                 if (scrollPosition > scrollTrigger) {
                     section.style.transform = 'translateY(0)';
                     section.style.opacity = '1';
-                    
-                    // Animate content within sections
-                    if (section.classList.contains('introduction')) {
-                        const introH1 = section.querySelector('h1');
-                        const introP = section.querySelector('p');
-                        const teamMembers = section.querySelector('.team-members');
-                        
-                        introH1.style.transform = 'translateX(0)';
+                }
+            }
+
+            // Animate intro content (once it has entered)
+            if (introSection) {
+                const introTrigger = (introSection.offsetTop) - windowHeight * 0.7;
+                if (scrollPosition > introTrigger) {
+                    if (introH1) introH1.style.transform = 'translateX(0)';
+                    if (introP) {
                         introP.style.opacity = '1';
                         introP.style.transform = 'translateY(0)';
-                        
-                        if (teamMembers) {
-                            teamMembers.style.opacity = '1';
-                            teamMembers.style.transform = 'translateY(0)';
-                        }
                     }
-                    
-                    if (section.classList.contains('contact')) {
-                        const contactBox = section.querySelector('.contact-box');
-                        contactBox.style.opacity = '1';
-                        contactBox.style.transform = 'translateY(0)';
+                    if (introTeamMembers) {
+                        introTeamMembers.style.opacity = '1';
+                        introTeamMembers.style.transform = 'translateY(0)';
                     }
                 }
-            });
-
-            // Scroll indicator
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (scrollPosition > 100) {
-                scrollIndicator.style.opacity = '0';
-            } else {
-                scrollIndicator.style.opacity = '0.8';
             }
-        });
+
+            // Animate contact box (once it has entered)
+            if (contactBox && contactSection) {
+                const contactTrigger = cachedContactTop - windowHeight * 0.7;
+                if (scrollPosition > contactTrigger) {
+                    contactBox.style.opacity = '1';
+                    contactBox.style.transform = 'translateY(0)';
+                }
+            }
+
+            // Scroll indicator fade
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = scrollPosition > 100 ? '0' : '0.8';
+            }
+        }
+
+        window.addEventListener(
+            'scroll',
+            () => {
+                latestScrollY = window.scrollY;
+                if (!ticking) {
+                    ticking = true;
+                    window.requestAnimationFrame(runScrollAnimations);
+                }
+            },
+            { passive: true }
+        );
 
         // Comparison Slider
         const slider = document.querySelector('.comparison-slider .slider');
