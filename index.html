@@ -127,7 +127,8 @@
             align-items: center;
             padding: 120px clamp(12px, 4vw, 48px) 60px clamp(12px, 4vw, 48px);
             z-index: 4;
-            transform: translateY(100%);
+            /* Use viewport units so long content doesn't create a huge blank gap */
+            transform: translateY(100vh);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
             opacity: 1;
             min-height: 100vh;
