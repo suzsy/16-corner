@@ -21,6 +21,11 @@
             cursor: none; /* ensure cursor hidden at viewport edges */
         }
 
+        /* Make hash links land consistently below the fixed navbar */
+        h2[id], h3[id], p[id] {
+            scroll-margin-top: 100px;
+        }
+
           .header {
         text-align: center;
         padding: 30px 0 20px 0;
@@ -314,6 +319,10 @@
                 scroll-padding-top: 70px;
             }
 
+            h2[id], h3[id], p[id] {
+                scroll-margin-top: 80px;
+            }
+
             body {
                 padding: 70px var(--page-gutter) 0 var(--page-gutter);
             }
@@ -347,6 +356,10 @@
 
             html {
                 scroll-padding-top: 65px;
+            }
+
+            h2[id], h3[id], p[id] {
+                scroll-margin-top: 75px;
             }
 
             body {
@@ -401,7 +414,7 @@
         
     <div class="project-section">
         <h2 id="background">Background</h2>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp; 16 Corner is a portfolio of five multifamily properties comprising 44 units, originally built between 1949 and 1952. Many residents have longstanding ties to Overtown, with some families living in the area for generations. </p>
+        <p id="background-paragraph">&nbsp;&nbsp;&nbsp;&nbsp; 16 Corner is a portfolio of five multifamily properties comprising 44 units, originally built between 1949 and 1952. Many residents have longstanding ties to Overtown, with some families living in the area for generations. </p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; In 2018, the City of Miami designated the five buildings as unsafe structures, prompting a critical decision between demolition and preservation. Demolition would have resulted in resident displacement and a reduction in available housing units. Under the site’s T3-O zoning designation in the Miami 21 Master Plan, allowable density would have been limited to approximately 12 units, further constraining the housing supply in a neighborhood already experiencing a shortage.</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp; The Omni Community Redevelopment Agency ("Omni CRA") engaged Avra Jain, founder of The Vagabond Group, to lead the preservation of the existing structures. The project aimed to retain original architectural features, preserve housing supply, retrofit the buildings for safety and resilience, and restore healthy housing for current and future residents. </p>
 
@@ -561,7 +574,7 @@
 
         const navbar = document.querySelector('.navbar');
         const navbarHeight = navbar ? navbar.offsetHeight : 0;
-        const y = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 12;
+        const y = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 8;
         window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
     }
 
