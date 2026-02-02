@@ -551,6 +551,31 @@
         }
     });
 
+    // Stable hash-link positioning (prevents landing "between paragraphs" due to late-loading images)
+    function scrollToHashTarget() {
+        if (!window.location.hash) return;
+        const id = decodeURIComponent(window.location.hash.slice(1));
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        const navbar = document.querySelector('.navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const y = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 12;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
+    }
+
+    // Run once on load, then again shortly after to account for lazy images/late layout.
+    window.addEventListener('load', () => {
+        scrollToHashTarget();
+        setTimeout(scrollToHashTarget, 250);
+        setTimeout(scrollToHashTarget, 800);
+    });
+    // Also handle bfcache restores (back/forward)
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) scrollToHashTarget();
+    });
+
     function scrollToTop() {
         window.scrollTo({
             top: 0,
