@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="Image/favicon.svg"/>
+    <meta name="description" content="16 Corner Project Summary"/>
     <title>Project Summary</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T1QGQ0XYJP"></script>
@@ -23,6 +24,7 @@
         :root {
             /* Wired-like gutters: small on phones, larger on desktop */
             --page-gutter: clamp(12px, 4vw, 48px);
+            color-scheme: light dark;
         }
 
         /* Prevent anchor jumps from being hidden under fixed navbar */
@@ -47,13 +49,13 @@
         .header h1 {
             font-family: futura;
             font-size: 3em;
-            color: #000000;
+            color: light-dark(#000, #FFF);
             bottom: 30px;
         }
 
 
         body {
-            background-color: #ffffff;
+            background-color: light-dark(#FFF, #000);
             margin: 0;
             /* create page gutters without using body margins (fixes cursor edge issues) */
             padding: 90px var(--page-gutter) 0 var(--page-gutter);
@@ -76,8 +78,8 @@
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #333;
+            background-color: light-dark(rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.8));
+            color: light-dark(#333, #BBB);
             border: none;
             border-radius: 50%;
             width: 40px;
@@ -98,7 +100,7 @@
         }
 
         .back-to-top:hover {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: light-dark(rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9));
             transform: translateY(-2px);
         }
 
@@ -108,14 +110,14 @@
         }
          /*Navbar*/
         .navbar {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: light-dark(rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.8));
         padding: 10px 0;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 5px light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
         }
 
         .nav-links {
@@ -128,7 +130,7 @@
 
         .nav-button {
         padding: 10px 20px;
-        color: rgb(245, 240, 242);
+        color: light-dark(rgb(245, 240, 242), rgb(10, 15, 13));
         font-family: 'Futura';
         font-weight: medium;
         text-decoration: none;
@@ -211,11 +213,11 @@
             margin-bottom: 0;
             padding-bottom: 0;
             text-align: left;
+            color: light-dark(#000, #FFF);
         }
 
         .project-section h2 {
             font-family: Avenir bold;
-            color: #000000;
             font-size: 1.8em;
             margin-bottom: 0;
         }
@@ -223,7 +225,6 @@
         .project-section h3 {
             font-family: sans-serif Bold;
             font-size: 1.2em;
-            color: #000000;
             margin: 15px 0;
             text-align: left;
         }
@@ -233,7 +234,6 @@
                 font-family: sans-serif;
                 font-size:1em;
                 line-height: 1.6;
-                color: #000000;
                 margin: 15px 0;
                 text-align: left;
             }
@@ -491,7 +491,7 @@
 
         <h3>2.&nbsp;Carrying Costs and Budget Shortfalls</h3>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Building 1560 serves as an example of unexpected cost fluctuations in a prolonged phased development. Supply chain shortages during COVID19 led to sharp increases in construction material costs. Although the original estimate for construction was $760,239.04, final costs rose to nearly $1 million. </p>
-        <img src="project-summary/1560 & 1540 payapp sum.avif" class="project-image comparison-image" decoding="async" loading="lazy">
+        <img src="project-summary/1560 & 1540 payapp sum.avif" alt="1560 & 1540 payapp" class="project-image comparison-image" decoding="async" loading="lazy">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;The five highest-cost categories for Building 1560 were drywall, electrical, plumbing, structural work, and windows. Plumbing costs nearly doubled, and window costs increased by more than 50% compared to the original contract. Building 1540 and 1560 share the same floorplans. Building 1540 was the first to be completed, and 1560 was the last to be completed. The same five categories for 1540 cost $238,175.77 less than 1560 (see details below). This represents a 112% increase in costs for 1560 compared to 1540.</p>
         <img src="project-summary/1560 & 1540 comparison.avif" class="project-image comparison-image" decoding="async" loading="lazy">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;Budget shortfalls and additional carrying costs were ultimately borne by the developers. For developers with limited access to alternative funding, such overruns can jeopardize project progress.</p>
