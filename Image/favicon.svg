@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   viewBox="0 0 68.807594 68.807594"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="favicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="10.391295"
+     inkscape:cx="45.711337"
+     inkscape:cy="24.443536"
+     inkscape:window-width="3440"
+     inkscape:window-height="1361"
+     inkscape:window-x="0"
+     inkscape:window-y="282"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="true">
+    <sodipodi:guide
+       position="83.47798,59.469069"
+       orientation="0,-1"
+       id="guide6"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="71.982422,11.148837"
+       orientation="0,-1"
+       id="guide7"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-65.071911,-41.931698)">
+    <circle
+       style="opacity:1;fill:#1a0410;fill-opacity:1;stroke:none;stroke-width:5.23465;stroke-linecap:square;stroke-miterlimit:5.8;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path5"
+       cx="99.475708"
+       cy="76.335495"
+       r="34.403797" />
+    <path
+       id="path2"
+       style="font-size:70.5556px;line-height:1;font-family:'California Sunset - Outline';-inkscape-font-specification:'California Sunset - Outline, Normal';text-align:center;letter-spacing:0px;word-spacing:-5.6224px;text-anchor:middle;opacity:1;fill:#f4f9f2;fill-opacity:1;stroke:none;stroke-width:4.185;stroke-linecap:square;stroke-miterlimit:5.8;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 109.64392,99.21959 q 4.37444,0 8.04334,-2.116668 3.52778,-2.046112 5.715,-5.785559 2.18722,-3.527781 2.18722,-7.972784 0,-4.303891 -2.18722,-7.972783 -2.11667,-3.668891 -5.78556,-5.785559 -3.31611,-1.975557 -7.40834,-2.187224 l 5.71501,-10.58334 v -0.07056 q 0.28222,-0.635 0.28222,-1.12889 0,-0.564444 -0.14111,-0.846667 -0.42334,-1.058334 -1.27,-1.622779 l -3.03389,-1.622779 q -0.49389,-0.282222 -1.27001,-0.282222 -0.91722,0 -1.41111,0.352778 -0.70555,0.282223 -1.05833,1.12889 L 96.308908,74.666236 q -2.540002,3.880558 -2.540002,8.678339 0,4.303892 2.116668,7.902228 2.116668,3.739447 5.856116,5.856115 3.59834,2.116668 7.90223,2.116668 z m 0,-22.860015 q 2.96333,0 5.00944,2.046112 2.04612,2.046113 2.04612,4.938892 0,2.89278 -2.04612,4.938893 -2.04611,2.046112 -5.00944,2.046112 -2.89278,0 -4.9389,-2.046112 -2.04611,-2.046113 -2.04611,-4.938893 0,-2.892779 2.04611,-4.938892 1.97556,-2.046112 4.9389,-2.046112 z" />
+    <path
+       style="font-size:70.5556px;line-height:1;font-family:'California Sunset - Outline';-inkscape-font-specification:'California Sunset - Outline, Normal';text-align:center;letter-spacing:0px;word-spacing:-5.6224px;text-anchor:middle;opacity:1;fill:#f4f9f2;fill-opacity:1;stroke:none;stroke-width:4.65302;stroke-linecap:square;stroke-miterlimit:5.8;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 78.799243,65.18332 q -0.655943,0.60042 -1.311885,0.60042 -0.655944,0 -1.475873,-0.60042 l -2.787758,-2.401681 q -0.57395,-0.750526 -0.57395,-1.350946 0,-0.825578 0.57395,-1.350945 l 8.773239,-8.030621 q 0.655943,-0.525368 1.311886,-0.525368 h 0.327971 l 3.853665,0.900629 v 0.07505 q 0.737937,0.07505 1.311886,0.60042 0.491957,0.450315 0.491957,1.200841 v 43.530474 q 0,0.825574 -0.573949,1.350948 -0.573951,0.525365 -1.39388,0.525365 h -3.935658 q -0.819929,0 -1.393878,-0.525365 -0.573951,-0.525365 -0.573951,-1.350948 v -34.97448 z"
+       id="path1" />
+  </g>
+</svg>
